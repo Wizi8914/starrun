@@ -1,0 +1,441 @@
+# _       _____   _____   _____  __    __ 
+#| |     /  _  \ |  _  \ |  _  \ \ \  / / 
+#| |     | | | | | |_| | | |_| |  \ \/ /  
+#| |     | | | | |  _  { |  _  {   \  /   
+#| |___  | |_| | | |_| | | |_| |   / /    
+#|_____| \_____/ |_____/ |_____/  /_/     
+
+#==========================================
+
+on first join:
+    wait 3 ticks
+    teleport player to {lobby}
+    heal player
+    set player's hunger bar to 10
+    add 0 to {statwin.%player%}
+    add 0 to {coins.%player%}
+    add 0 to {xp.%player%}
+    add 0 to {lvl.%player%}
+    add 0 to {statpoint.%player%}
+    add 0 to {statitem.%player%}
+    add 0 to {statparty.%player%}
+    add 0 to {statbox.%player%}
+    add 0 to {box.%player%}
+    add 0 to {statkill.%player%}
+    add 0 to {kill counter.%player%.kills_session}
+    add 0 to {kill counter.%player%.kills_session_max}
+    set slot 2 of player to ender chest named "&b&lCosmétique"
+    set slot 4 of player to compass named "&b&lMenu"
+    set slot 6 of player to {_skull} named "&b&lProfil"
+    set player tab name to "&f%player%"
+    set {decoreco.%player%} to true
+
+on join:
+    if {str::s::%player%} is set:
+        loop {liste::game%{str::s::%player%}%::*}:
+            reveal the player from loop-value
+            reveal the loop-value from player
+            set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+    if {str::s::%player%} is not set:
+        teleport player to {lobby}
+        set player tab name to "&7%player%"
+        clear player's inventory
+        heal player
+        set player's hunger bar to 10
+        set {_skull} to player's skull
+        set slot 2 of player to ender chest named "&b&lCosmétique"
+        set slot 4 of player to compass named "&b&lMenu"
+        set slot 6 of player to {_skull} named "&b&lProfil"
+        add 0 to {statwin.%player%}
+        add 0 to {coins.%player%}
+        add 0 to {xp.%player%}
+        add 0 to {lvl.%player%}
+        add 0 to {statpoint.%player%}
+        add 0 to {statitem.%player%}
+        add 0 to {statparty.%player%}
+        add 0 to {statbox.%player%}
+        add 0 to {box.%player%}
+        add 0 to {statkill.%player%}
+        add 0 to {kill counter.%player%.kills_session}
+        add 0 to {kill counter.%player%.kills_session_max}
+        set player tab name to "&f%player%"        
+        if player is op:
+            if {admin.%player%} is set:
+                send "&b&lGala&f&lStar &8| &eAdmin Mode &aOn &8| &b/admin"
+                stop
+            if {admin.%player%} is not set:
+                send "&b&lGala&f&lStar &8| &eAdmin Mode &cOff &8| &b/admin"
+                stop
+
+on right click with bed:
+    If name of tool of player is "&c&llobby":
+        if {wait.%player%} is set:
+            clear {wait.%player%}
+            send "&cTéléportation annulée!"
+            stop
+        set {wait.%player%} to true
+        send "&aVous allez être téléporter au spawn dans 3s!"
+        wait 3 seconds
+        if {wait.%player%} is set:
+            make player run command "spawn" as op
+            broadcast "&7%player% &ea quitter (&b%{str::1::nbpl}%&e/&b%{str::1::nbplmax}%&e)!" to "lobbyjeux"
+            clear {wait.%player%}
+            stop
+
+#==================================================================================================================
+
+on join:
+    loop 1000 times:
+        set {_around.lobby.%player%} to location of player
+        set {_around.lobby.%player%} to distance between player and {lobby}
+        if {_around.lobby.%player%} is less than or equal to 500:
+            set {inlobby.%player%} to true
+        else:
+            set {inlobby.%player%} to false
+
+on world change:
+    loop 1000 times:
+        set {_around.lobby.%player%} to location of player
+        set {_around.lobby.%player%} to distance between player and {lobby}
+        if {_around.lobby.%player%} is less than or equal to 500:
+            set {inlobby.%player%} to true
+        else:
+            set {inlobby.%player%} to false
+
+#=====================================================SCOREBOARD====================================================
+every 1 second:
+    set {str.nbrco} to amount of players in world "lobbystarrun" and "lobbyjeux" and "starrun" and "pvp"
+     
+every 3 seconds:
+    loop all players:
+        if {inlobby.%loop-player%} is true:
+            wait a tick
+            edit score id "victoire.%loop-player%" to "&8&l> &fVicoires &7: &b%{statwin.%loop-player%}%" and 7
+            edit score id "kill.%loop-player%" to "&8&l> &fTotal Kills &7: &b%{statkill.%loop-player%}%" and 6
+            edit score id "coins.%loop-player%" to "&8&l> &fCoins &7: &b%{coins.%loop-player%}%" and 5
+            edit score id "online" to "&8&l> &fJoueurs &7: &b%{str.nbrco}%" and 3
+            edit score id "grade.%loop-player%" to "&8&l> &fGrade &7: &b%{grade.%loop-player%}%" and 9
+
+
+every 7 seconds:
+    loop all players:
+        if {inlobby.%loop-player%} is true:
+            wait a tick
+            edit score id "iplobbystarrun.%loop-player%" to "&7Play.GalaStar.fr" and 1
+            wait 3 ticks
+            edit score id "iplobbystarrun.%loop-player%" to "&3P&7lay.GalaStar.fr" and 1
+            wait 3 ticks
+            edit score id "iplobbystarrun.%loop-player%" to "&bP&3l&7ay.GalaStar.fr" and 1
+            wait 3 ticks
+            edit score id "iplobbystarrun.%loop-player%" to "&3P&bl&3a&7y.GalaStar.fr" and 1
+            wait 3 ticks
+            edit score id "iplobbystarrun.%loop-player%" to "&7P&3l&ba&3y&7.GalaStar.fr" and 1
+            wait 3 ticks
+            edit score id "iplobbystarrun.%loop-player%" to "&7Pl&3a&by&3.&7GalaStar.fr" and 1
+            wait 3 ticks
+            edit score id "iplobbystarrun.%loop-player%" to "&7Pla&3y&b.&3G&7alaStar.fr" and 1
+            wait 3 ticks
+            edit score id "iplobbystarrun.%loop-player%" to "&7Play&3.&bG&3a&7laStar.fr" and 1
+            wait 3 ticks
+            edit score id "iplobbystarrun.%loop-player%" to "&7Play.&3G&ba&3l&7aStar.fr" and 1
+            wait 3 ticks
+            edit score id "iplobbystarrun.%loop-player%" to "&7Play.G&3a&bl&3a&7Star.fr" and 1
+            wait 3 ticks
+            edit score id "iplobbystarrun.%loop-player%" to "&7Play.Ga&3l&ba&3S&7tar.fr" and 1
+            wait 3 ticks
+            edit score id "iplobbystarrun.%loop-player%" to "&7Play.Gal&3a&bS&3t&7ar.fr" and 1
+            wait 3 ticks
+            edit score id "iplobbystarrun.%loop-player%" to "&7Play.Gala&3S&bt&3a&7r.fr" and 1
+            wait 3 ticks
+            edit score id "iplobbystarrun.%loop-player%" to "&7Play.GalaS&3t&ba&3r&7.fr" and 1
+            wait 3 ticks
+            edit score id "iplobbystarrun.%loop-player%" to "&7Play.GalaSt&3a&br&3.&7fr" and 1
+            wait 3 ticks
+            edit score id "iplobbystarrun.%loop-player%" to "&7Play.GalaSta&3r&b.&3f&7r" and 1
+            wait 3 ticks
+            edit score id "iplobbystarrun.%loop-player%" to "&7Play.GalaStar&3.&bf&3r" and 1
+            wait 3 ticks
+            edit score id "iplobbystarrun.%loop-player%" to "&7Play.GalaStar.&3f&br" and 1
+            wait 3 ticks
+            edit score id "iplobbystarrun.%loop-player%" to "&7Play.GalaStar.f&3r" and 1
+            wait 1 ticks
+            edit score id "iplobbystarrun.%loop-player%" to "&7Play.GalaStar.fr" and 1
+
+on join:
+    wait 10 ticks
+    if {inlobby.%player%} is true:
+        wait 3 ticks
+        wipe player's sidebar
+        wait 3 ticks
+        set name of sidebar of player to "&7&l< &b&lStar&f&lRun &7&l>"
+        set score "&8    " in sidebar of player to 12
+        set score "&8&l> &f%player%" in sidebar of player to 11
+        set score "   " in sidebar of player to 10
+        set id based score "&8&l> &fGrade &7: &b%{grade.%player%}%" in sidebar of player to 9 with id "grade.%player%"
+        set score "  " in sidebar of player to 8
+        set id based score "&8&l> &fVicoires &7: &b%{statwin.%player%}%" in sidebar of player to 7 with id "victoire.%player%"
+        set id based score "&8&l> &fTotal Kills &7: &b%{statkill.%player%}%" in sidebar of player to 6 with id "kill.%player%"
+        set id based score "&8&l> &fCoins &7: &b%{coins.%player%}%" in sidebar of player to 5 with id "coins.%player%"
+        set score "    " in sidebar of player to 4
+        set id based score "&8&l> &fJoueurs &7: &b%{str.nbrco}%" in sidebar of player to 3 with id "online"
+        set score "&9     " in sidebar of player to 2
+        set id based score "&7Play.GalaStar.fr" in sidebar of player to 1 with id "iplobbystarrun.%player%"
+        stop
+
+on world change:
+    wait 10 ticks
+    if {inlobby.%player%} is true:
+        wait 3 ticks
+        wipe player's sidebar
+        wait 3 ticks
+        set name of sidebar of player to "&7&l< &b&lStar&f&lRun &7&l>"
+        set score "&8    " in sidebar of player to 12
+        set score "&8&l> &f%player%" in sidebar of player to 11
+        set score "   " in sidebar of player to 10
+        set id based score "&8&l> &fGrade &7: &b%{grade.%player%}%" in sidebar of player to 9 with id "grade.%player%"
+        set score "  " in sidebar of player to 8
+        set id based score "&8&l> &fVicoires &7: &b%{statwin.%player%}%" in sidebar of player to 7 with id "victoire.%player%"
+        set id based score "&8&l> &fTotal Kills &7: &b%{statkill.%player%}%" in sidebar of player to 6 with id "statkill.%player%"
+        set id based score "&8&l> &fCoins &7: &b%{coins.%player%}%" in sidebar of player to 5 with id "coins.%player%"
+        set score "    " in sidebar of player to 4
+        set id based score "&8&l> &fJoueurs &7: &b%{str.nbrco}%" in sidebar of player to 3 with id "online"
+        set score "&9     " in sidebar of player to 2
+        set id based score "&7Play.GalaStar.fr" in sidebar of player to 1 with id "iplobbystarrun.%player%"
+        stop
+
+#================================================SCOREBOARD=========================================================
+
+on explode:
+    if world is "lobby":
+        cancel event
+
+on place:
+    if {admin.%player%} is set:
+        stop
+    if world is "lobbystarrun":
+        cancel event
+on break:
+    if {admin.%player%} is set:
+        stop
+    if world is "lobbystarrun":
+        cancel event
+
+on inventory click:
+    if {admin.%player%} is set:
+        stop
+    if world is "lobbystarrun":
+        cancel event
+        
+on drop:
+    if world is "lobbystarrun":
+        cancel event
+on damage:
+    if victim is a player:
+        if world is "lobbystarrun":
+            cancel event
+on damage:
+    if damage was caused by void:
+        cancel event
+        teleport victim to {hub}
+
+command /admin:
+    trigger:
+        if player is op:
+            if {admin.%player%} is set:
+                clear {admin.%player%}
+                send "&b&lGala&f&lStar &8| &eAdmin Mode &cOff"
+                stop
+            if {admin.%player%} is not set:
+                set {admin.%player%} to true
+                send "&b&lGala&f&lStar &8| &eAdmin Mode &aOn"
+                stop
+
+on hunger meter change:
+    cancel event
+
+command /level:
+    trigger:
+        if player is op:
+            if {xp.%player%} is more than or equal to 5000:
+                add 1 to {lvl.%player%}
+                send "&e&lStar Run &8| &bLevel UP %{lvl.%player%}% !"
+                clear {xp.%player%}
+                add 0 to {xp.%player%}
+
+on rightclick on entity:
+    if name of entity is "&8":
+        make player run command "str autojoin" as op
+
+on rightclick on ender chest:
+    cancel event
+    make player run command "lootbox" as op
+
+command /lootbox:
+    trigger:
+        if player is op:
+            open chest with 5 rows named "&b&lLOOTBOX" to player
+            wait 3 ticks
+            format slot 0 of player with stained glass pane:3 named " " to be unstealable
+            format slot 1 of player with stained glass pane:0 named " " to be unstealable
+            format slot 2 of player with stained glass pane:3 named " " to be unstealable
+            format slot 3 of player with stained glass pane:0 named " " to be unstealable
+            format slot 4 of player with stained glass pane:3 named " " to be unstealable
+            format slot 5 of player with stained glass pane:0 named " " to be unstealable
+            format slot 6 of player with stained glass pane:3 named " " to be unstealable
+            format slot 7 of player with stained glass pane:0 named " " to be unstealable
+            format slot 8 of player with stained glass pane:3 named " " to be unstealable
+            format slot 9 of player with stained glass pane:0 named " " to be unstealable
+            format slot 17 of player with stained glass pane:0 named " " to be unstealable
+            format slot 18 of player with stained glass pane:3 named " " to be unstealable
+            format slot 26 of player with stained glass pane:3 named " " to be unstealable
+            format slot 27 of player with stained glass pane:0 named " " to be unstealable
+            format slot 35 of player with stained glass pane:0 named " " to be unstealable
+            format slot 36 of player with stained glass pane:3 named " " to be unstealable
+            format slot 37 of player with stained glass pane:0 named " " to be unstealable
+            format slot 38 of player with stained glass pane:3 named " " to be unstealable
+            format slot 39 of player with stained glass pane:0 named " " to be unstealable
+            format slot 40 of player with stained glass pane:3 named " " to be unstealable
+            format slot 41 of player with stained glass pane:0 named " " to be unstealable
+            format slot 42 of player with stained glass pane:3 named " " to be unstealable
+            format slot 43 of player with stained glass pane:0 named " " to be unstealable
+            format slot 44 of player with stained glass pane:3 named " " to be unstealable
+            format slot 22 of player with ender chest named "&b&lLootbox" with lore "&b%{box.%player%}% &7Lootbox a ouvrir" to run [make player execute command "/box"]
+
+on right click with compass:
+    if {inlobby.%player%} is true:
+        make player run command "strmenu" as op
+        
+on rightclick on furnace:
+    if {inlobby.%player%} is true:
+        cancel event
+
+on rightclick on dispenser:
+    if {inlobby.%player%} is true:
+        cancel event
+
+on rightclick on hopper:
+    if {inlobby.%player%} is true:
+        cancel event
+
+on rightclick on daylight sensor:
+    if {inlobby.%player%} is true:
+        cancel event
+
+on rightclick on beacon:
+    if {inlobby.%player%} is true:
+        cancel event
+
+on rightclick on button:
+    if {inlobby.%player%} is true:
+        cancel event
+
+on rightclick on dropper:
+    if {inlobby.%player%} is true:
+        cancel event
+
+on rightclick on item frame:
+    if {inlobby.%player%} is true:
+        cancel event
+
+command /profil:
+    trigger:
+        if player is op:
+            set {_skull} to player's skull
+            open chest with 5 rows named "&b&lProfil" to player
+            wait 3 ticks
+            format slot 0 of player with stained glass pane:3 named " " to be unstealable
+            format slot 1 of player with stained glass pane:0 named " " to be unstealable
+            format slot 2 of player with stained glass pane:3 named " " to be unstealable
+            format slot 3 of player with stained glass pane:0 named " " to be unstealable
+            format slot 4 of player with stained glass pane:3 named " " to be unstealable
+            format slot 5 of player with stained glass pane:0 named " " to be unstealable
+            format slot 6 of player with stained glass pane:3 named " " to be unstealable
+            format slot 7 of player with stained glass pane:0 named " " to be unstealable
+            format slot 8 of player with stained glass pane:3 named " " to be unstealable
+            format slot 9 of player with stained glass pane:0 named " " to be unstealable
+            format slot 17 of player with stained glass pane:0 named " " to be unstealable
+            format slot 18 of player with stained glass pane:3 named " " to be unstealable
+            format slot 26 of player with stained glass pane:3 named " " to be unstealable
+            format slot 27 of player with stained glass pane:0 named " " to be unstealable
+            format slot 35 of player with stained glass pane:0 named " " to be unstealable
+            format slot 36 of player with stained glass pane:3 named " " to be unstealable
+            format slot 37 of player with stained glass pane:0 named " " to be unstealable
+            format slot 38 of player with stained glass pane:3 named " " to be unstealable
+            format slot 39 of player with stained glass pane:0 named " " to be unstealable
+            format slot 40 of player with stained glass pane:3 named " " to be unstealable
+            format slot 41 of player with stained glass pane:0 named " " to be unstealable
+            format slot 42 of player with stained glass pane:3 named " " to be unstealable
+            format slot 43 of player with stained glass pane:0 named " " to be unstealable
+            format slot 44 of player with stained glass pane:3 named " " to be unstealable
+            format slot 22 of player with {_skull} named "&e%player%" with lore "&r&7comming soon" to be unstealable
+            format slot 20 of player with diamond named "&eGrade" with lore "&r&7%{grade.%player%}%" to be unstealable
+            format slot 24 of player with Book named "&eStatistiques" with lore "&7Total point gagné : %{statpoint.%player%}%||&7Total Item vendue : %{statitem.%player%}%||&7Partie jouer : %{statparty.%player%}%||&7Partie Gagner : %{statwin.%player%}%||&7Lootbox ouverte : %{statbox.%player%}%||&7Total Kills : %{statkill.%player%}%||&7Meilleur killstreak : %{kill counter.%player%.kills_session_max}% " to be unstealable
+
+command /cosmetique:
+    trigger:
+        player is op
+        open chest with 5 rows named "&b&lCosmétique" to player
+        wait 3 ticks
+        format slot 0 of player with stained glass pane:3 named " " to be unstealable
+        format slot 1 of player with stained glass pane:0 named " " to be unstealable
+        format slot 2 of player with stained glass pane:3 named " " to be unstealable
+        format slot 3 of player with stained glass pane:0 named " " to be unstealable
+        format slot 4 of player with stained glass pane:3 named " " to be unstealable
+        format slot 5 of player with stained glass pane:0 named " " to be unstealable
+        format slot 6 of player with stained glass pane:3 named " " to be unstealable
+        format slot 7 of player with stained glass pane:0 named " " to be unstealable
+        format slot 8 of player with stained glass pane:3 named " " to be unstealable
+        format slot 9 of player with stained glass pane:0 named " " to be unstealable
+        format slot 17 of player with stained glass pane:0 named " " to be unstealable
+        format slot 18 of player with stained glass pane:3 named " " to be unstealable
+        format slot 26 of player with stained glass pane:3 named " " to be unstealable
+        format slot 27 of player with stained glass pane:0 named " " to be unstealable
+        format slot 35 of player with stained glass pane:0 named " " to be unstealable
+        format slot 36 of player with stained glass pane:3 named " " to be unstealable
+        format slot 37 of player with stained glass pane:0 named " " to be unstealable
+        format slot 38 of player with stained glass pane:3 named " " to be unstealable
+        format slot 39 of player with stained glass pane:0 named " " to be unstealable
+        format slot 40 of player with stained glass pane:3 named " " to be unstealable
+        format slot 41 of player with stained glass pane:0 named " " to be unstealable
+        format slot 42 of player with stained glass pane:3 named " " to be unstealable
+        format slot 43 of player with stained glass pane:0 named " " to be unstealable
+        format slot 44 of player with stained glass pane:3 named " " to be unstealable
+        format slot 22 of player with blaze powder named "&6&lParticule" with lore "&r&7comming soon" to be unstealable
+        format slot 24 of player with bone named "&6&lPet" with lore "&r&7comming soon" to be unstealable
+        format slot 20 of player with leather cap named "&6&lChapeau" with lore "&r&7comming soon" to be unstealable
+
+on right click with head:
+    make player run command "profil" as op
+
+on right click with ender chest:
+    make player run command "cosmetique" as op
+
+every 2 seconds:
+    set {holo.nbrco} to number of players in worlds "starrun" and "lobbyjeux" and "pvp"
+
+every 5 seconds:
+    make console execute command "hd setline npc 3 &f%{holo.nbrco}% Joueurs"
+
+command /test:
+    trigger:
+        if player is op:
+            give 1 nether star named "&b&lMenu" to player
+
+
+
+command /setlobby:
+    trigger:
+        if player is op:
+            set {lobby} to player's location
+            message "&b&lGala&f&lstar &7Lobby Placé au Coo %{lobby}%"
+
+command /setlobby2:
+    trigger:
+        if player is op:
+            set {lobby2} to player's location
+            message "&b&lGala&f&lstar &7Lobby 2 Placé au Coo %{lobby}%"
+
+command /test1:
+    trigger:
+        if player is op:
+            give 1 nether star named "&b&lShop PVP" to player

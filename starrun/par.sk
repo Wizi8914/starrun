@@ -1,0 +1,411 @@
+options:
+	prefix: &b&lGala&f&lStar &8&l| &7
+	
+command /particule:
+	trigger:
+		if player is op:
+			open chest with 5 rows named "&3&lMenu &3&ldes &3&lparticules" to player
+			wait 3 tick
+			format slot 0 of player with stained glass pane:3 named " " to be unstealable
+			format slot 1 of player with stained glass pane:0 named " " to be unstealable
+			format slot 2 of player with stained glass pane:3 named " " to be unstealable
+			format slot 3 of player with stained glass pane:0 named " " to be unstealable
+			format slot 4 of player with stained glass pane:3 named " " to be unstealable
+			format slot 5 of player with stained glass pane:0 named " " to be unstealable
+			format slot 6 of player with stained glass pane:3 named " " to be unstealable
+			format slot 7 of player with stained glass pane:0 named " " to be unstealable
+			format slot 8 of player with stained glass pane:3 named " " to be unstealable
+			format slot 9 of player with stained glass pane:0 named " " to be unstealable
+			format slot 17 of player with stained glass pane:0 named " " to be unstealable
+			format slot 18 of player with stained glass pane:3 named " " to be unstealable
+			format slot 26 of player with stained glass pane:3 named " " to be unstealable
+			format slot 27 of player with stained glass pane:0 named " " to be unstealable
+			format slot 35 of player with stained glass pane:0 named " " to be unstealable
+			format slot 36 of player with stained glass pane:3 named " " to be unstealable
+			format slot 37 of player with stained glass pane:0 named " " to be unstealable
+			format slot 38 of player with stained glass pane:3 named " " to be unstealable
+			format slot 39 of player with stained glass pane:0 named " " to be unstealable
+			format slot 40 of player with red wool named "&c&lTout désactivé" to close then run [make player execute command "/pdelall"]
+			format slot 41 of player with stained glass pane:0 named " " to be unstealable
+			format slot 42 of player with stained glass pane:3 named " " to be unstealable
+			format slot 43 of player with stained glass pane:0 named " " to be unstealable
+			format slot 44 of player with stained glass pane:3 named " " to be unstealable
+			format slot 10 of player with poppy named "&4&lCoeur" with lore "&7Particules de &4coeur" to close then run [make player execute command "/love"]
+			format slot 11 of player with redstone named "&c&lRedstone" with lore "&7Particules de &credstone" to close then run [make player execute command "/redstone"]
+			format slot 12 of player with blaze powder named "&6&lFlame" with lore "&7Particules de &6flame" to close then run [make player execute command "/flame"]
+			format slot 13 of player with jukebox named "&6&lNote" with lore "&7Particules de &3note" to close then run [make player execute command "/note"]
+			format slot 14 of player with bone meal named "&6&lNuage" with lore "&7Particules de &3nuage" to close then run [make player execute command "/cloud"]
+			format slot 15 of player with fermented spider eye named "&6&lMagie" with lore "&7Particules de &3magie" to close then run [make player execute command "/witchMagic"]
+			format slot 16 of player with obsidian named "&6&lPortail" with lore "&7Particules de &3portail" to close then run [make player execute command "/port"]
+command /pdelall:
+	trigger:
+		set {particule.%player%.coeur} to false
+		set {particule.%player%.flame} to false
+		set {particule.%player%.redstone} to false
+		set {particule.%player%.cloud} to false
+		set {particule.%player%.note} to false
+		set {particule.%player%.portal} to false
+		set {particule.%player%.witchMagic} to false
+		message "{@prefix} &7&lTout les particules sont &c&ldésactivés &7&l!"			
+On join:
+	set {particule.%player%.coeur} to false
+	set {particule.%player%.flame} to false
+	set {particule.%player%.note} to false
+	set {particule.%player%.cloud} to false
+	set {particule.%player%.witchMagic} to false
+	set {particule.%player%.portal} to false
+	set {particule.%player%.redstone} to false
+	
+every 1 tick:
+	loop all players:
+		if {particule.%loop-player%.coeur} is true:
+			set {love.%loop-player%} to location of loop-player
+			show 10 "heart" particles at location of loop-player for loop-player offset by 0.4, 0.7, 0.4
+		if {particule.%loop-player%.redstone} is true:
+			set {redstone.%loop-player%} to location of loop-player
+			show 10 "redstone" particles at location of loop-player for loop-player offset by 0.4, 0.7, 0.4
+		if {particule.%loop-player%.flame} is true:
+			set {flame.%loop-player%} to location of loop-player
+			show 10 "flame" particles at location of loop-player for loop-player offset by 0.4, 0.7, 0.4
+		if {particule.%loop-player%.note} is true:
+			set {note.%loop-player%} to location of loop-player
+			show 10 "note" particles at location of loop-player for loop-player offset by 0.4, 0.7, 0.4
+		if {particule.%loop-player%.cloud} is true:
+			set {cloud.%loop-player%} to location of loop-player
+			show 10 "cloud" particles at location of loop-player for loop-player offset by 0.4, 0.7, 0.4
+		if {particule.%loop-player%.witchMagic} is true:
+			set {witchMagic.%loop-player%} to location of loop-player
+			show 10 "witchMagic" particles at location of loop-player for loop-player offset by 0.4, 0.7, 0.4
+		if {particule.%loop-player%.portal} is true:
+			set {portal.%loop-player%} to location of loop-player
+			show 20 "portal" particles at location of loop-player for loop-player offset by 0.4, 0.7, 0.4
+command /love:
+	trigger:
+		if {particule.%player%.coeur} is false:
+			if {particule.%player%.redstone} is true:
+				set {particule.%player%.coeur} to true
+				message "{@prefix} &7Particules coeur : &aActivé"
+				set {particule.%player%.redstone} to false
+				message "{@prefix} &7Particules redstone : &cDésactivé"
+				stop
+			if {particule.%player%.flame} is true:
+				set {particule.%player%.flame} to false
+				message "{@prefix} &7Particules flame : &cDésactivé"
+				set {particule.%player%.coeur} to true
+				message "{@prefix} &7Particules coeur : &aActivé"
+				stop
+			if {particule.%player%.note} is true:
+				set {particule.%player%.note} to false
+				message "{@prefix} &7Particules note : &cDésactivé"
+				set {particule.%player%.coeur} to true
+				message "{@prefix} &7Particules coeur : &aActivé"
+				stop
+			if {particule.%player%.cloud} is true:
+				set {particule.%player%.cloud} to false
+				message "{@prefix} &7Particules cloud: &cDésactivé"
+				set {particule.%player%.coeur} to true
+				message "{@prefix} &7Particules coeur : &aActivé"
+				stop
+			if {particule.%player%.witchmagic} is true:
+				set {particule.%player%.witchMagic} to false
+				message "{@prefix} &7Particules witchMagic : &cDésactivé"
+				set {particule.%player%.coeur} to true
+				message "{@prefix} &7Particules coeur : &aActivé"
+				stop
+			if {particule.%player%.portal} is true:
+				set {particule.%player%.portal} to false
+				message "{@prefix} &7Particules portal : &cDésactivé"
+				set {particule.%player%.coeur} to true
+				message "{@prefix} &7Particules coeur : &aActivé"
+				stop
+		else:
+			set {particule.%player%.coeur} to false
+			message "{@prefix} &7Particules coeur : &cDésactivé"
+			stop
+		if {particule.%player%.coeur} is false:
+			set {particule.%player%.coeur} to true
+			message "{@prefix} &7Particules coeur : &aActivé"
+			stop	
+command /redstone:
+	trigger:
+		if {particule.%player%.redstone} is false:
+			if {particule.%player%.coeur} is true:
+				set {particule.%player%.redstone} to true
+				message "{@prefix} &7Particules redstone : &aActivé"
+				set {particule.%player%.coeur} to false
+				message "{@prefix} &7Particules coeur : &cDésactivé"
+				stop
+			if {particule.%player%.flame} is true:
+				set {particule.%player%.flame} to false
+				message "{@prefix} &7Particules flame : &cDésactivé"
+				set {particule.%player%.redstone} to true
+				message "{@prefix} &7Particules redstone : &aActivé"
+				stop
+			if {particule.%player%.note} is true:
+				set {particule.%player%.note} to false
+				message "{@prefix} &7Particules note : &cDésactivé"
+				set {particule.%player%.redstone} to true
+				message "{@prefix} &7Particules redstone : &aActivé"
+				stop
+			if {particule.%player%.cloud} is true:
+				set {particule.%player%.cloud} to false
+				message "{@prefix} &7Particules cloud : &cDésactivé"
+				set {particule.%player%.redstone} to true
+				message "{@prefix} &7Particules redstone : &aActivé"
+				stop
+			if {particule.%player%.witchmagic} is true:
+				set {particule.%player%.witchMagic} to false
+				message "{@prefix} &7Particules witchMagic : &cDésactivé"
+				set {particule.%player%.redstone} to true
+				message "{@prefix} &7Particules redstone : &aActivé"
+				stop
+			if {particule.%player%.portal} is true:
+				set {particule.%player%.portal} to false
+				message "{@prefix} &7Particules portal : &cDésactivé"
+				set {particule.%player%.redstone} to true
+				message "{@prefix} &7Particules redstone : &aActivé"
+				stop
+		else:
+			set {particule.%player%.redstone} to false
+			message "{@prefix} &7Particules redstone : &cDésactivé"
+			stop
+		if {particule.%player%.redstone} is false:
+			set {particule.%player%.redstone} to true
+			message "{@prefix} &7Particules redstone : &aActivé"
+			stop
+command /flame:
+	trigger:
+		if {particule.%player%.flame} is false:
+			if {particule.%player%.coeur} is true:
+				set {particule.%player%.flame} to true
+				message "{@prefix} &7Particules flame : &aActivé"
+				set {particule.%player%.coeur} to false
+				message "{@prefix} &7Particules coeur : &cDésactivé"
+				stop
+			if {particule.%player%.redstone} is true:
+				set {particule.%player%.redstone} to false
+				message "{@prefix} &7Particules redstone : &cDésactivé"
+				set {particule.%player%.flame} to true
+				message "{@prefix} &7Particules flame : &aActivé"
+				stop
+			if {particule.%player%.note} is true:
+				set {particule.%player%.note} to false
+				message "{@prefix} &7Particules note : &cDésactivé"
+				set {particule.%player%.flame} to true
+				message "{@prefix} &7Particules flame : &aActivé"
+				stop
+			if {particule.%player%.cloud} is true:
+				set {particule.%player%.cloud} to false
+				message "{@prefix} &7Particules cloud : &cDésactivé"
+				set {particule.%player%.flame} to true
+				message "{@prefix} &7Particules flame : &aActivé"
+				stop
+			if {particule.%player%.witchmagic} is true:
+				set {particule.%player%.witchMagic} to false
+				message "{@prefix} &7Particules witchMagic : &cDésactivé"
+				set {particule.%player%.flame} to true
+				message "{@prefix} &7Particules flame : &aActivé"
+				stop
+			if {particule.%player%.portal} is true:
+				set {particule.%player%.portal} to false
+				message "{@prefix} &7Particules portal : &cDésactivé"
+				set {particule.%player%.flame} to true
+				message "{@prefix} &7Particules flame : &aActivé"
+				stop
+		else:
+			set {particule.%player%.flame} to false
+			message "{@prefix} &7Particules flame : &cDésactivé"
+			stop
+		if {particule.%player%.flame} is false:
+			set {particule.%player%.flame} to true
+			message "{@prefix} &7Particules flame : &aActivé"
+			stop	
+command /note:
+	trigger:
+		if {particule.%player%.note} is false:
+			if {particule.%player%.coeur} is true:
+				set {particule.%player%.note} to true
+				message "{@prefix} &7Particules note : &aActivé"
+				set {particule.%player%.coeur} to false
+				message "{@prefix} &7Particules coeur : &cDésactivé"
+				stop
+			if {particule.%player%.redstone} is true:
+				set {particule.%player%.redstone} to false
+				message "{@prefix} &7Particules redstone : &cDésactivé"
+				set {particule.%player%.note} to true
+				message "{@prefix} &7Particules note : &aActivé"
+				stop
+			if {particule.%player%.flame} is true:
+				set {particule.%player%.flame} to false
+				message "{@prefix} &7Particules flame : &cDésactivé"
+				set {particule.%player%.note} to true
+				message "{@prefix} &7Particules note : &aActivé"
+				stop
+			if {particule.%player%.cloud} is true:
+				set {particule.%player%.cloud} to false
+				message "{@prefix} &7Particules cloud : &cDésactivé"
+				set {particule.%player%.note} to true
+				message "{@prefix} &7Particules note : &aActivé"
+				stop
+			if {particule.%player%.witchmagic} is true:
+				set {particule.%player%.witchMagic} to false
+				message "{@prefix} &7Particules witchMagic : &cDésactivé"
+				set {particule.%player%.note} to true
+				message "{@prefix} &7Particules note : &aActivé"
+				stop
+			if {particule.%player%.portal} is true:
+				set {particule.%player%.portal} to false
+				message "{@prefix} &7Particules portal : &cDésactivé"
+				set {particule.%player%.note} to true
+				message "{@prefix} &7Particules note : &aActivé"
+				stop
+		else:
+			set {particule.%player%.note} to false
+			message "{@prefix} &7Particules note : &cDésactivé"
+			stop
+		if {particule.%player%.note} is false:
+			set {particule.%player%.note} to true
+			message "{@prefix} &7Particules note : &aActivé"
+			stop
+command /cloud:
+	trigger:
+		if {particule.%player%.cloud} is false:
+			if {particule.%player%.coeur} is true:
+				set {particule.%player%.cloud} to true
+				message "{@prefix} &7Particules cloud : &aActivé"
+				set {particule.%player%.coeur} to false
+				message "{@prefix} &7Particules coeur : &cDésactivé"
+				stop
+			if {particule.%player%.redstone} is true:
+				set {particule.%player%.redstone} to false
+				message "{@prefix} &7Particules redstone : &cDésactivé"
+				set {particule.%player%.cloud} to true
+				message "{@prefix} &7Particules cloud : &aActivé"
+				stop
+			if {particule.%player%.note} is true:
+				set {particule.%player%.note} to false
+				message "{@prefix} &7Particules note : &cDésactivé"
+				set {particule.%player%.cloud} to true
+				message "{@prefix} &7Particules cloud : &aActivé"
+				stop
+			if {particule.%player%.flame} is true:
+				set {particule.%player%.flame} to false
+				message "{@prefix} &7Particules flame : &cDésactivé"
+				set {particule.%player%.cloud} to true
+				message "{@prefix} &7Particules cloud : &aActivé"
+				stop
+			if {particule.%player%.witchmagic} is true:
+				set {particule.%player%.witchMagic} to false
+				message "{@prefix} &7Particules witchMagic : &cDésactivé"
+				set {particule.%player%.cloud} to true
+				message "{@prefix} &7Particules cloud : &aActivé"
+				stop
+			if {particule.%player%.portal} is true:
+				set {particule.%player%.portal} to false
+				message "{@prefix} &7Particules portal : &cDésactivé"
+				set {particule.%player%.cloud} to true
+				message "{@prefix} &7Particules cloud : &aActivé"
+				stop
+		else:
+			set {particule.%player%.cloud} to false
+			message "{@prefix} &7Particules cloud : &cDésactivé"
+			stop
+		if {particule.%player%.cloud} is false:
+			set {particule.%player%.cloud} to true
+			message "{@prefix} &7Particules cloud : &aActivé"
+			stop	
+command /witchMagic:
+	trigger:
+		if {particule.%player%.witchMagic} is false:
+			if {particule.%player%.coeur} is true:
+				set {particule.%player%.witchMagic} to true
+				message "{@prefix} &7Particules witchMagic : &aActivé"
+				set {particule.%player%.coeur} to false
+				message "{@prefix} &7Particules coeur : &cDésactivé"
+				stop
+			if {particule.%player%.redstone} is true:
+				set {particule.%player%.redstone} to false
+				message "{@prefix} &7Particules redstone : &cDésactivé"
+				set {particule.%player%.witchMagic} to true
+				message "{@prefix} &7Particules witchMagic : &aActivé"
+				stop
+			if {particule.%player%.note} is true:
+				set {particule.%player%.note} to false
+				message "{@prefix} &7Particules note : &cDésactivé"
+				set {particule.%player%.witchMagic} to true
+				message "{@prefix} &7Particules witchMagic : &aActivé"
+				stop
+			if {particule.%player%.flame} is true:
+				set {particule.%player%.flame} to false
+				message "{@prefix} &7Particules flame : &cDésactivé"
+				set {particule.%player%.witchMagic} to true
+				message "{@prefix} &7Particules witchMagic : &aActivé"
+				stop
+			if {particule.%player%.cloud} is true:
+				set {particule.%player%.cloud} to false
+				message "{@prefix} &7Particules cloud : &cDésactivé"
+				set {particule.%player%.witchMagic} to true
+				message "{@prefix} &7Particules witchMagic : &aActivé"
+				stop
+			if {particule.%player%.portal} is true:
+				set {particule.%player%.portal} to false
+				message "{@prefix} &7Particules portal : &cDésactivé"
+				set {particule.%player%.witchMagic} to true
+				message "{@prefix} &7Particules witchMagic : &aActivé"
+				stop
+		else:
+			set {particule.%player%.witchMagic} to false
+			message "{@prefix} &7Particules witchMagic : &cDésactivé"
+			stop
+		if {particule.%player%.witchMagic} is false:
+			set {particule.%player%.witchMagic} to true
+			message "{@prefix} &7Particules witchMagic : &aActivé"
+			stop	
+command /portal:
+	trigger:
+		if {particule.%player%.portal} is false:
+			if {particule.%player%.coeur} is true:
+				set {particule.%player%.portal} to true
+				message "{@prefix} &7Particules portal : &aActivé"
+				set {particule.%player%.coeur} to false
+				message "{@prefix} &7Particules coeur : &cDésactivé"
+				stop
+			if {particule.%player%.redstone} is true:
+				set {particule.%player%.redstone} to false
+				message "{@prefix} &7Particules redstone : &cDésactivé"
+				set {particule.%player%.portal} to true
+				message "{@prefix} &7Particules portal : &aActivé"
+				stop
+			if {particule.%player%.note} is true:
+				set {particule.%player%.note} to false
+				message "{@prefix} &7Particules note : &cDésactivé"
+				set {particule.%player%.portal} to true
+				message "{@prefix} &7Particules portal : &aActivé"
+				stop
+			if {particule.%player%.flame} is true:
+				set {particule.%player%.flame} to false
+				message "{@prefix} &7Particules flame : &cDésactivé"
+				set {particule.%player%.portal} to true
+				message "{@prefix} &7Particules portal : &aActivé"
+				stop
+			if {particule.%player%.cloud} is true:
+				set {particule.%player%.cloud} to false
+				message "{@prefix} &7Particules cloud : &cDésactivé"
+				set {particule.%player%.portal} to true
+				message "{@prefix} &7Particules portal : &aActivé"
+				stop
+			if {particule.%player%.witchMagic} is true:
+				set {particule.%player%.witchMagic} to false
+				message "{@prefix} &7Particules witchMagic : &cDésactivé"
+				set {particule.%player%.portal} to true
+				message "{@prefix} &7Particules portal : &aActivé"
+				stop 
+		else:
+			set {particule.%player%.portal} to false
+			message "{@prefix} &7Particules portal : &cDésactivé"
+			stop
+		if {particule.%player%.portal} is false:
+			set {particule.%player%.portal} to true
+			message "{@prefix} &7Particules portal: &aActivé"
+			stop
+			

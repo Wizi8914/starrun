@@ -1,0 +1,163 @@
+on join:
+	wait 5 seconds
+	clear {cooldown.%player%}
+
+command /box:
+	trigger:
+		if {box.%player%} != 0:
+			if {cooldown.%player%} is not set:
+				set {cooldown.%player%} to true
+				open chest with 7 rows named "&b&lLOOTBOX" to player
+				wait 1 tick
+				add 1 wood sword of sharpness 100 to {_lot.list::*}
+				add 1 gold boots named "&b&ltest" to {_lot.list::*}
+				add 1 iron block to {_lot.list::*}
+				add 1 iron leggings to {_lot.list::*}
+				add 1 diamond chestplate of protection 10 named "&bUwU" to {_lot.list::*}
+				add 1 bow to {_lot.list::*}
+				add 1 stone to {_lot.list::*}
+				set {_caisse} to 0
+				loop 63 times:
+					format slot {_caisse} of player with a white glass pane named " " to be unstealable
+					add 1 to {_caisse}
+				format slot 0 of player with cyan glass pane named " " to be unstealable
+				format slot 1 of player with cyan glass pane named " " to be unstealable								
+				format slot 7 of player with cyan glass pane named " " to be unstealable								
+				format slot 8 of player with cyan glass pane named " " to be unstealable
+				format slot 9 of player with cyan glass pane named " " to be unstealable
+				format slot 17 of player with cyan glass pane named " " to be unstealable
+				format slot 45 of player with cyan glass pane named " " to be unstealable
+				format slot 53 of player with cyan glass pane named " " to be unstealable
+				format slot 54 of player with cyan glass pane named " " to be unstealable
+				format slot 55 of player with cyan glass pane named " " to be unstealable
+				format slot 61 of player with cyan glass pane named " " to be unstealable
+				format slot 62 of player with cyan glass pane named " " to be unstealable
+				format slot 34 of player with a 76 named "←" to be unstealable
+				format slot 28 of player with a 76 named "→" to be unstealable
+				format slot 22 of player with a 76 named "↓" to be unstealable
+				format slot 40 of player with a 76 named "↑" to be unstealable
+				set {_slot3} to random element of {_lot.list::*} 
+				set {_slot2} to random element of {_lot.list::*}
+				set {_slot1} to random element of {_lot.list::*}
+				set {_slot4} to random element of {_lot.list::*}
+				set {_slot5} to random element of {_lot.list::*}
+				format slot 31 of player with {_slot3} to be unstealable
+				format slot 30 of player with {_slot2} to be unstealable
+				format slot 29 of player with {_slot1} to be unstealable
+				format slot 32 of player with {_slot4} to be unstealable
+				format slot 33 of player with {_slot5} to be unstealable
+				set {_nombre33} to 5
+				set {_nombre31} to 3
+				set {_nombre30} to 2
+				set {_nombre29} to 1
+				set {_nombre32} to 4
+				set {_loop1} to a random integer between 10 and 20
+				loop {_loop1} times:
+					if "%inventory name of player's current inventory%" is "&b&lLOOTBOX":
+						set {_slot%{_nombre33}%} to random element of {_lot.list::*}
+						format slot 31 of player with {_slot%{_nombre31}%} to be unstealable
+						format slot 30 of player with {_slot%{_nombre30}%} to be unstealable
+						format slot 29 of player with {_slot%{_nombre29}%} to be unstealable
+						format slot 32 of player with {_slot%{_nombre32}%} to be unstealable
+						format slot 33 of player with {_slot%{_nombre33}%} to be unstealable
+						add 1 to {_nombre33}
+						add 1 to {_nombre32}
+						add 1 to {_nombre29}
+						add 1 to {_nombre30}
+						add 1 to {_nombre31}
+						play "CLICK" to player at volume 0.2
+						wait 0.2 second
+					else:
+						send "&b&lGala&f&lstar &8-&c Tu as fermé l'inventaire !"
+						clear {cooldown.%player%}
+						stop
+				set {_loop2} to a random integer between 5 and 10
+				loop {_loop2} times:
+					if "%inventory name of player's current inventory%" is "&b&lLOOTBOX":
+						set {_slot%{_nombre33}%} to random element of {_lot.list::*}
+						format slot 31 of player with {_slot%{_nombre31}%} to be unstealable
+						format slot 30 of player with {_slot%{_nombre30}%} to be unstealable
+						format slot 29 of player with {_slot%{_nombre29}%} to be unstealable
+						format slot 32 of player with {_slot%{_nombre32}%} to be unstealable
+						format slot 33 of player with {_slot%{_nombre33}%} to be unstealable
+						add 1 to {_nombre33}
+						add 1 to {_nombre32}
+						add 1 to {_nombre29}
+						add 1 to {_nombre30}
+						add 1 to {_nombre31}
+						play "CLICK" to player at volume 0.2
+						wait 0.5 second
+					else:
+						send "&b&lGala&f&lstar &8-&c Tu as fermé l'inventaire !"
+						clear {cooldown.%player%}
+						stop
+				set {_loop3} to a random integer between 1 and 4
+				loop {_loop3} times:
+					if "%inventory name of player's current inventory%" is "&b&lLOOTBOX":
+						set {_slot%{_nombre33}%} to random element of {_lot.list::*}
+						format slot 31 of player with {_slot%{_nombre31}%} to be unstealable
+						format slot 30 of player with {_slot%{_nombre30}%} to be unstealable
+						format slot 29 of player with {_slot%{_nombre29}%} to be unstealable
+						format slot 32 of player with {_slot%{_nombre32}%} to be unstealable
+						format slot 33 of player with {_slot%{_nombre33}%} to be unstealable
+						add 1 to {_nombre33}
+						add 1 to {_nombre32}
+						add 1 to {_nombre29}
+						add 1 to {_nombre30}
+						add 1 to {_nombre31}
+						play "CLICK" to player at volume 0.2
+						wait 1 second
+					else:
+						send "&b&lGala&f&lstar &8-&c Tu as fermé l'inventaire !"
+						clear {cooldown.%player%}
+						stop
+				add -1 to {box.%player%}
+				add 1 to {statbox.%player%}
+				wait 1 tick
+				send "&b&lGala&f&lstar &8- &fVous avez gagnés &9%{_slot%{_nombre30}%}%"
+				clear {cooldown.%player%}
+				give {_slot%{_nombre30}%} to player
+				play level up at player with pitch 1
+			else:
+				send "&b&lGala&f&lstar &8-&c Tu as fermé l'inventaire !"
+				clear {cooldown.%player%}
+		else:
+			send "&b&lGala&f&lstar &8-&c Tu n'as pas de Lootbox a ouvrir !"
+			play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+On drop:
+	if {cooldown.%player%} is true:
+		cancel event
+
+
+
+command /boxx [<text>] [<player>] [<number>]: #commande de give de box pour admin
+	trigger:
+		if arg 1 is not set:
+			if player has permission "box.admin":
+				message "&cIl faut entrée des argument !"
+				stop
+
+		else if arg 1 is "give":
+			if player has permission "box.admin":
+				add number arg to {box.%player%}
+				message "&b&lGala&f&lstar &8- &7Tu as donne &b%number arg% &7lootbox a &b%arg-2%"
+		
+		else if arg 1 is "reset":
+			if player has permission "box.admin":
+				if player arg is set:
+					set {box.%player%} to 0
+					message "&b&lGala&f&lstar &8- &7Tu as reset le nombre de lootbox de &b%arg-2%"
+		
+		else if arg 1 is "remove":
+			if player has permission "box.admin":
+				if arg 2 is set:
+					if number arg is set:
+						if {box.%player%} is less than number arg:
+							message "&cErreur, &c%arg 2% n'as pas assez de points !"
+							stop
+						else:
+							remove number arg from {box.%player%}
+							message "&b&lGala&f&lstar &8- &7Tu as bien retiré &b%arg 3% &7box à &b%arg 2%"
+					else:
+						message "&cErreur, tu dois mettre un nombre de lootbox à enlever" 

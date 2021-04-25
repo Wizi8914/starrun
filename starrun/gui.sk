@@ -1,0 +1,484 @@
+on right click with nether star:
+    if name of tool is "&b&lMenu":
+        make player run command "§retourgui" as op
+
+on right click with nether star:
+    if name of tool is "&b&lShop PvP":
+        make player run command "shoppvp" as op
+
+            #==========================================================================================================
+            #                                             GUI StarRun
+            #==========================================================================================================
+
+command /§strwood:
+    trigger:
+        open chest with 5 rows named "&b&lBois" to player
+        wait 3 ticks
+        format slot 0 of player with stained glass pane:3 named " " to be unstealable
+        format slot 1 of player with stained glass pane:0 named " " to be unstealable
+        format slot 2 of player with stained glass pane:3 named " " to be unstealable
+        format slot 3 of player with stained glass pane:0 named " " to be unstealable
+        format slot 4 of player with stained glass pane:3 named " " to be unstealable
+        format slot 5 of player with stained glass pane:0 named " " to be unstealable
+        format slot 6 of player with stained glass pane:3 named " " to be unstealable
+        format slot 7 of player with stained glass pane:0 named " " to be unstealable
+        format slot 8 of player with stained glass pane:3 named " " to be unstealable
+        format slot 9 of player with stained glass pane:0 named " " to be unstealable
+        format slot 17 of player with stained glass pane:0 named " " to be unstealable
+        format slot 18 of player with stained glass pane:3 named " " to be unstealable
+        format slot 26 of player with stained glass pane:3 named " " to be unstealable
+        format slot 27 of player with stained glass pane:0 named " " to be unstealable
+        format slot 35 of player with stained glass pane:0 named " " to be unstealable
+        format slot 36 of player with stained glass pane:3 named " " to be unstealable
+        format slot 37 of player with stained glass pane:0 named " " to be unstealable
+        format slot 38 of player with stained glass pane:3 named " " to be unstealable
+        format slot 39 of player with stained glass pane:0 named " " to be unstealable
+        format slot 40 of player with arrow named "&c&lRetour" to run [make player execute command "/§retourgui"]
+        format slot 41 of player with stained glass pane:0 named " " to be unstealable
+        format slot 42 of player with stained glass pane:3 named " " to be unstealable
+        format slot 43 of player with stained glass pane:0 named " " to be unstealable
+        format slot 44 of player with stained glass pane:3 named " " to be unstealable
+        format slot 10 of player with oak wood item named "&b&lBois de Chêne" with lore "&f&l20⭐||&eCliquer pour vendre !" to run [make player execute command "/sold oak"]
+        format slot 11 of player with birch wood item named "&b&lBois de Bouleau" with lore "&f&l20⭐||&eCliquer pour vendre !" to run [make player execute command "/sold birch"]
+        format slot 12 of player with spruce wood item named "&b&lBois de Sapin" with lore "&f&l20⭐||&eCliquer pour vendre !" to run [make player execute command "/sold spruce"]
+        format slot 13 of player with 162 named "&b&lBois d'acacia" with lore "&f&l20⭐||&eCliquer pour vendre !" to run [make player execute command "/sold acacia"]
+        format slot 14 of player with jungle wood item named "&b&lBois d'acajou" with lore "&f&l20⭐||&eCliquer pour vendre !" to run [make player execute command "/sold jungle"]
+        format slot 15 of player with 162:1 named "&b&lBois de Chêne Noir" with lore "&f&l20⭐||&eCliquer pour vendre !" to run [make player execute command "/sold dark"]
+
+
+command /§strmob:
+    trigger:
+        open chest with 5 rows named "&b&lLoot Monstre" to player
+        wait 3 ticks
+        format slot 0 of player with stained glass pane:3 named " " to be unstealable
+        format slot 1 of player with stained glass pane:0 named " " to be unstealable
+        format slot 2 of player with stained glass pane:3 named " " to be unstealable
+        format slot 3 of player with stained glass pane:0 named " " to be unstealable
+        format slot 4 of player with stained glass pane:3 named " " to be unstealable
+        format slot 5 of player with stained glass pane:0 named " " to be unstealable
+        format slot 6 of player with stained glass pane:3 named " " to be unstealable
+        format slot 7 of player with stained glass pane:0 named " " to be unstealable
+        format slot 8 of player with stained glass pane:3 named " " to be unstealable
+        format slot 9 of player with stained glass pane:0 named " " to be unstealable
+        format slot 17 of player with stained glass pane:0 named " " to be unstealable
+        format slot 18 of player with stained glass pane:3 named " " to be unstealable
+        format slot 26 of player with stained glass pane:3 named " " to be unstealable
+        format slot 27 of player with stained glass pane:0 named " " to be unstealable
+        format slot 35 of player with stained glass pane:0 named " " to be unstealable
+        format slot 36 of player with stained glass pane:3 named " " to be unstealable
+        format slot 37 of player with stained glass pane:0 named " " to be unstealable
+        format slot 38 of player with stained glass pane:3 named " " to be unstealable
+        format slot 39 of player with stained glass pane:0 named " " to be unstealable
+        format slot 40 of player with arrow named "&c&lRetour" to run [make player execute command "/§retourgui"]
+        format slot 41 of player with stained glass pane:0 named " " to be unstealable
+        format slot 42 of player with stained glass pane:3 named " " to be unstealable
+        format slot 43 of player with stained glass pane:0 named " " to be unstealable
+        format slot 44 of player with stained glass pane:3 named " " to be unstealable
+        format slot 10 of player with string named "&b&lFil" with lore "&f&l40⭐||&eCliquer pour vendre !" to run [make player execute command "/sold string"]
+        format slot 11 of player with ender pearl named "&b&lEnder Pearl" with lore "&f&l1150⭐||&eCliquer pour vendre !" to run [make player execute command "/sold pearl"]
+        format slot 12 of player with 397:1 named "&b&lTete de Wither" with lore "&f&l20000⭐||&eCliquer pour vendre !" to run [make player execute command "/sold tetewiwi"]
+        format slot 13 of player with magma cream named "&b&lCreme de Magma" with lore "&f&l900⭐||&eCliquer pour vendre !" to run [make player execute command "/sold cream"]
+        format slot 14 of player with blaze rod named "&b&lBaton de blaze" with lore "&f&l150⭐||&eCliquer pour vendre !" to run [make player execute command "/sold blaze"]
+        format slot 15 of player with ghast tear named "&b&lLarme de Ghast" with lore "&f&l2000⭐||&eCliquer pour vendre !" to run [make player execute command "/sold ghast"]
+
+
+command /§strfarm:
+    trigger:
+        open chest with 5 rows named "&b&lFarm" to player
+        wait 3 ticks
+        format slot 0 of player with stained glass pane:3 named " " to be unstealable
+        format slot 1 of player with stained glass pane:0 named " " to be unstealable
+        format slot 2 of player with stained glass pane:3 named " " to be unstealable
+        format slot 3 of player with stained glass pane:0 named " " to be unstealable
+        format slot 4 of player with stained glass pane:3 named " " to be unstealable
+        format slot 5 of player with stained glass pane:0 named " " to be unstealable
+        format slot 6 of player with stained glass pane:3 named " " to be unstealable
+        format slot 7 of player with stained glass pane:0 named " " to be unstealable
+        format slot 8 of player with stained glass pane:3 named " " to be unstealable
+        format slot 9 of player with stained glass pane:0 named " " to be unstealable
+        format slot 17 of player with stained glass pane:0 named " " to be unstealable
+        format slot 18 of player with stained glass pane:3 named " " to be unstealable
+        format slot 26 of player with stained glass pane:3 named " " to be unstealable
+        format slot 27 of player with stained glass pane:0 named " " to be unstealable
+        format slot 35 of player with stained glass pane:0 named " " to be unstealable
+        format slot 36 of player with stained glass pane:3 named " " to be unstealable
+        format slot 37 of player with stained glass pane:0 named " " to be unstealable
+        format slot 38 of player with stained glass pane:3 named " " to be unstealable
+        format slot 39 of player with stained glass pane:0 named " " to be unstealable
+        format slot 40 of player with arrow named "&c&lRetour" to run [make player execute command "/§retourgui"]
+        format slot 41 of player with stained glass pane:0 named " " to be unstealable
+        format slot 42 of player with stained glass pane:3 named " " to be unstealable
+        format slot 43 of player with stained glass pane:0 named " " to be unstealable
+        format slot 44 of player with stained glass pane:3 named " " to be unstealable
+        format slot 10 of player with leather named "&b&lCuir" with lore "&f&l100⭐||&eCliquer pour vendre !" to run [make player execute command "/sold cuir"] 
+        format slot 11 of player with feather named "&b&lPlume" with lore "&f&l80⭐||&eCliquer pour vendre !" to run [make player execute command "/sold plume"]
+        format slot 12 of player with 372 named "&b&lVerrues du Nether" with lore "&f&l50⭐||&eCliquer pour vendre !" to run [make player execute command "/sold netherwart"]
+        format slot 13 of player with 338 named "&b&lCanne à sucre" with lore "&f&l60⭐||&eCliquer pour vendre !" to run [make player execute command "/sold sugarcane" ]
+
+command /§strblock:
+    trigger:
+        open chest with 5 rows named "&b&lBlock" to player
+        wait 3 ticks
+        format slot 0 of player with stained glass pane:3 named " " to be unstealable
+        format slot 1 of player with stained glass pane:0 named " " to be unstealable
+        format slot 2 of player with stained glass pane:3 named " " to be unstealable
+        format slot 3 of player with stained glass pane:0 named " " to be unstealable
+        format slot 4 of player with stained glass pane:3 named " " to be unstealable
+        format slot 5 of player with stained glass pane:0 named " " to be unstealable
+        format slot 6 of player with stained glass pane:3 named " " to be unstealable
+        format slot 7 of player with stained glass pane:0 named " " to be unstealable
+        format slot 8 of player with stained glass pane:3 named " " to be unstealable
+        format slot 9 of player with stained glass pane:0 named " " to be unstealable
+        format slot 17 of player with stained glass pane:0 named " " to be unstealable
+        format slot 18 of player with stained glass pane:3 named " " to be unstealable
+        format slot 26 of player with stained glass pane:3 named " " to be unstealable
+        format slot 27 of player with stained glass pane:0 named " " to be unstealable
+        format slot 35 of player with stained glass pane:0 named " " to be unstealable
+        format slot 36 of player with stained glass pane:3 named " " to be unstealable
+        format slot 37 of player with stained glass pane:0 named " " to be unstealable
+        format slot 38 of player with stained glass pane:3 named " " to be unstealable
+        format slot 39 of player with stained glass pane:0 named " " to be unstealable
+        format slot 40 of player with arrow named "&c&lRetour" to run [make player execute command "/§retourgui"]
+        format slot 41 of player with stained glass pane:0 named " " to be unstealable
+        format slot 42 of player with stained glass pane:3 named " " to be unstealable
+        format slot 43 of player with stained glass pane:0 named " " to be unstealable
+        format slot 44 of player with stained glass pane:3 named " " to be unstealable
+        format slot 10 of player with sponge named "&b&lEponge" with lore "&f&l2500⭐||&eCliquer pour vendre !" to run [make player execute command "/sold sponge"]
+        format slot 11 of player with TNT named "&b&lTNT" with lore "&f&l1400⭐||&eCliquer pour vendre !" to run [make player execute command "/sold tnt"]
+        format slot 12 of player with slime block named "&b&lBlock de Slime" with lore "&f&l2700⭐||&eCliquer pour vendre !" to run [make player execute command "/sold slimeblock"]
+        format slot 13 of player with enchantment table named "&b&lTable D'enchantement" with lore "&f&l4500⭐||&eCliquer pour vendre !" to run [make player execute command "/sold enchant"]
+        format slot 14 of player with wool named "&b&lLaine" with lore "&f&l20⭐||&eCliquer pour vendre !" to run [make player execute command "/sold wool"]
+        format slot 15 of player with stone brick named "&b&lStone Brick" with lore "&f&l16⭐||&eCliquer pour vendre !" to run [make player execute command "/sold stonebrick"]
+        format slot 16 of player with brick block named "&b&lBlock de Brique" with lore "&f&l120⭐||&eCliquer pour vendre !" to run [make player execute command "/sold brickblock"]
+        format slot 19 of player with sand named "&b&lSable" with lore "&f&l10⭐||&eCliquer pour vendre !" to run [make player execute command "/sold sand"]
+        format slot 20 of player with anvil named "&b&lEnclume" with lore "&f&l4800⭐||&eCliquer pour vendre !" to run [make player execute command "/sold anvil"]
+        format slot 21 of player with obsidian named "&b&lObsidienne" with lore "&f&l250⭐||&eCliquer pour vendre !" to run [make player execute command "/sold obsi"]
+        format slot 22 of player with hay block named "&b&lBlock de Paille" with lore "&f&l270⭐||&eCliquer pour vendre !" to run [make player execute command "/sold hayblock"]
+        format slot 23 of player with glass named "&b&lVerre" with lore "&f&l30⭐||&eCliquer pour vendre !" to run [make player execute command "/sold glass"]
+
+command /§strore:
+    trigger:
+        open chest with 5 rows named "&b&lMinerai" to player
+        wait 3 ticks
+        format slot 0 of player with stained glass pane:3 named " " to be unstealable
+        format slot 1 of player with stained glass pane:0 named " " to be unstealable
+        format slot 2 of player with stained glass pane:3 named " " to be unstealable
+        format slot 3 of player with stained glass pane:0 named " " to be unstealable
+        format slot 4 of player with stained glass pane:3 named " " to be unstealable
+        format slot 5 of player with stained glass pane:0 named " " to be unstealable
+        format slot 6 of player with stained glass pane:3 named " " to be unstealable
+        format slot 7 of player with stained glass pane:0 named " " to be unstealable
+        format slot 8 of player with stained glass pane:3 named " " to be unstealable
+        format slot 9 of player with stained glass pane:0 named " " to be unstealable
+        format slot 17 of player with stained glass pane:0 named " " to be unstealable
+        format slot 18 of player with stained glass pane:3 named " " to be unstealable
+        format slot 26 of player with stained glass pane:3 named " " to be unstealable
+        format slot 27 of player with stained glass pane:0 named " " to be unstealable
+        format slot 35 of player with stained glass pane:0 named " " to be unstealable
+        format slot 36 of player with stained glass pane:3 named " " to be unstealable
+        format slot 37 of player with stained glass pane:0 named " " to be unstealable
+        format slot 38 of player with stained glass pane:3 named " " to be unstealable
+        format slot 39 of player with stained glass pane:0 named " " to be unstealable
+        format slot 40 of player with arrow named "&c&lRetour" to run [make player execute command "/§retourgui"]
+        format slot 41 of player with stained glass pane:0 named " " to be unstealable
+        format slot 42 of player with stained glass pane:3 named " " to be unstealable
+        format slot 43 of player with stained glass pane:0 named " " to be unstealable
+        format slot 44 of player with stained glass pane:3 named " " to be unstealable
+        format slot 10 of player with emerald item named "&b&lEmeraude" with lore "&f&l2200⭐||&eCliquer pour vendre !" to run [make player execute command "/sold emerald"]
+        format slot 11 of player with diamond item named "&b&lDiamant" with lore "&f&l1500⭐||&eCliquer pour vendre !" to run [make player execute command "/sold diamond"]
+        format slot 12 of player with iron ingot item named "&b&lFer" with lore "&f&l150⭐||&eCliquer pour vendre !" to run [make player execute command "/sold iron"]
+        format slot 13 of player with gold ingot item named "&b&lOr" with lore "&f&l800⭐||&eCliquer pour vendre !" to run [make player execute command "/sold gold"]
+        format slot 14 of player with lapis lazuli item named "&b&lLapis" with lore "&f&l200⭐||&eCliquer pour vendre !" to run [make player execute command "/sold lapis"]
+        format slot 15 of player with redstone item named "&b&lRedstone" with lore "&f&l50⭐||&eCliquer pour vendre !" to run [make player execute command "/sold redstone"]
+        format slot 16 of player with coal item named "&b&lCharbon" with lore "&f&l50⭐||&eCliquer pour vendre !" to run [make player execute command "/sold coal"]
+
+command /§retourgui:
+    trigger:
+        open chest with 5 rows named "&b&lMenu &f&lDes &b&lVente" to player
+        wait 3 ticks
+        format slot 0 of player with stained glass pane:3 named " " to be unstealable
+        format slot 1 of player with stained glass pane:0 named " " to be unstealable
+        format slot 2 of player with stained glass pane:3 named " " to be unstealable
+        format slot 3 of player with stained glass pane:0 named " " to be unstealable
+        format slot 4 of player with stained glass pane:3 named " " to be unstealable
+        format slot 5 of player with stained glass pane:0 named " " to be unstealable
+        format slot 6 of player with stained glass pane:3 named " " to be unstealable
+        format slot 7 of player with stained glass pane:0 named " " to be unstealable
+        format slot 8 of player with stained glass pane:3 named " " to be unstealable
+        format slot 9 of player with stained glass pane:0 named " " to be unstealable
+        format slot 17 of player with stained glass pane:0 named " " to be unstealable
+        format slot 18 of player with stained glass pane:3 named " " to be unstealable
+        format slot 26 of player with stained glass pane:3 named " " to be unstealable
+        format slot 27 of player with stained glass pane:0 named " " to be unstealable
+        format slot 35 of player with stained glass pane:0 named " " to be unstealable
+        format slot 36 of player with stained glass pane:3 named " " to be unstealable
+        format slot 37 of player with stained glass pane:0 named " " to be unstealable
+        format slot 38 of player with stained glass pane:3 named " " to be unstealable
+        format slot 39 of player with stained glass pane:0 named " " to be unstealable
+        format slot 40 of player with stained glass pane:3 named " " to be unstealable
+        format slot 41 of player with stained glass pane:0 named " " to be unstealable
+        format slot 42 of player with stained glass pane:3 named " " to be unstealable
+        format slot 43 of player with stained glass pane:0 named " " to be unstealable
+        format slot 44 of player with stained glass pane:3 named " " to be unstealable
+        format slot 20 of player with diamond named "&b&lMinerais" to run [make player execute command "/§strore"]
+        format slot 21 of player with 17 named "&b&lBois" to run [make player execute command "/§strwood"]
+        format slot 22 of player with rotten flesh named "&b&lLoot Monstres" to run [make player execute command "/§strmob"]
+        format slot 23 of player with cobblestone named "&b&lBlocs" to run [make player execute command "/§strblock"]
+        format slot 24 of player with 296 named "&b&lFarm" to run [make player execute command "/§strfarm"]
+        format slot 31 of player with name tag named "&b&lAutres" to run [make player execute command "/§strautre"]
+
+command /§strautre:
+    trigger:
+        open chest with 5 rows named "&b&lAutre" to player
+        wait 3 ticks
+        format slot 0 of player with stained glass pane:3 named " " to be unstealable
+        format slot 1 of player with stained glass pane:0 named " " to be unstealable
+        format slot 2 of player with stained glass pane:3 named " " to be unstealable
+        format slot 3 of player with stained glass pane:0 named " " to be unstealable
+        format slot 4 of player with stained glass pane:3 named " " to be unstealable
+        format slot 5 of player with stained glass pane:0 named " " to be unstealable
+        format slot 6 of player with stained glass pane:3 named " " to be unstealable
+        format slot 7 of player with stained glass pane:0 named " " to be unstealable
+        format slot 8 of player with stained glass pane:3 named " " to be unstealable
+        format slot 9 of player with stained glass pane:0 named " " to be unstealable
+        format slot 17 of player with stained glass pane:0 named " " to be unstealable
+        format slot 18 of player with stained glass pane:3 named " " to be unstealable
+        format slot 26 of player with stained glass pane:3 named " " to be unstealable
+        format slot 27 of player with stained glass pane:0 named " " to be unstealable
+        format slot 35 of player with stained glass pane:0 named " " to be unstealable
+        format slot 36 of player with stained glass pane:3 named " " to be unstealable
+        format slot 37 of player with stained glass pane:0 named " " to be unstealable
+        format slot 38 of player with stained glass pane:3 named " " to be unstealable
+        format slot 39 of player with stained glass pane:0 named " " to be unstealable
+        format slot 40 of player with arrow named "&c&lRetour" to run [make player execute command "/§retourgui"]
+        format slot 41 of player with stained glass pane:0 named " " to be unstealable
+        format slot 42 of player with stained glass pane:3 named " " to be unstealable
+        format slot 43 of player with stained glass pane:0 named " " to be unstealable
+        format slot 44 of player with stained glass pane:3 named " " to be unstealable
+        format slot 10 of player with name tag named "&b&lName Tag" with lore "&f&l500⭐||&eCliquer pour vendre !" to run [make player execute command "/sold nametag"]
+        format slot 11 of player with ink sack named "&b&lpoche d'encre" with lore "&f&l200⭐||&eCliquer pour vendre !" to run [make player execute command "/sold inksac"]
+        format slot 12 of player with flint named "&b&lSilex" with lore "&f&l30⭐||&eCliquer pour vendre !" to run [make player execute command "/sold flint"]
+        format slot 13 of player with golden apple named "&b&lPomme d'or" with lore "&f&l6000⭐||&eCliquer pour vendre !" to run [make player execute command "/sold gapple"]
+
+            #==========================================================================================================
+            #                                             GUI PVP
+            #==========================================================================================================
+
+
+command /shoppvp:
+    trigger:
+        set {_skull} to player's skull
+        open chest with 5 rows named "&b&lSTAR&f&lRUN" to player
+        wait 3 tick
+        format slot 0 of player with stained glass pane:3 named " " to be unstealable
+        format slot 1 of player with stained glass pane:0 named " " to be unstealable
+        format slot 2 of player with stained glass pane:3 named " " to be unstealable
+        format slot 3 of player with stained glass pane:0 named " " to be unstealable
+        format slot 4 of player with {_skull} named "&b&l%player%" with lore "&f&lPoint : &b%{str::1::points::%player%}%" to be unstealable
+        format slot 5 of player with stained glass pane:0 named " " to be unstealable
+        format slot 6 of player with stained glass pane:3 named " " to be unstealable
+        format slot 7 of player with stained glass pane:0 named " " to be unstealable
+        format slot 8 of player with stained glass pane:3 named " " to be unstealable
+        format slot 9 of player with stained glass pane:0 named " " to be unstealable
+        format slot 17 of player with stained glass pane:0 named " " to be unstealable
+        format slot 18 of player with stained glass pane:3 named " " to be unstealable
+        format slot 26 of player with stained glass pane:3 named " " to be unstealable
+        format slot 27 of player with stained glass pane:0 named " " to be unstealable
+        format slot 35 of player with stained glass pane:0 named " " to be unstealable
+        format slot 36 of player with stained glass pane:3 named " " to be unstealable
+        format slot 37 of player with stained glass pane:0 named " " to be unstealable
+        format slot 38 of player with stained glass pane:3 named " " to be unstealable
+        format slot 39 of player with stained glass pane:0 named " " to be unstealable
+        format slot 40 of player with stained glass pane:3 named " " to be unstealable
+        format slot 41 of player with stained glass pane:0 named " " to be unstealable
+        format slot 42 of player with stained glass pane:3 named " " to be unstealable
+        format slot 43 of player with stained glass pane:0 named " " to be unstealable
+        format slot 44 of player with stained glass pane:3 named " " to be unstealable
+        format slot 20 of player with diamond sword named "&b&lArme" to run [make player execute command "/§shoppvparme"]
+        format slot 21 of player with 322 named "&b&lSoin" to run [make player execute command "/§shoppvpsoin"]
+        format slot 22 of player with diamond chestplate named "&b&lArmure" to run [make player execute command "/§shoppvparmure"]
+        format slot 23 of player with fishing rod named "&b&lAutre" to run [make player execute command "/§shoppvpautre"]
+        format slot 24 of player with cobblestone named "&b&lBlock" to run [make player execute command "/§shoppvpblock"]
+
+command /§shoppvparme:
+    trigger:
+        set {_skull} to player's skull
+        open chest with 5 rows named "&b&lArme" to player
+        wait 3 tick
+        format slot 0 of player with stained glass pane:3 named " " to be unstealable
+        format slot 1 of player with stained glass pane:0 named " " to be unstealable
+        format slot 2 of player with stained glass pane:3 named " " to be unstealable
+        format slot 3 of player with stained glass pane:0 named " " to be unstealable
+        format slot 4 of player with {_skull} named "&b&l%player%" with lore "&f&lPoint : &b%{str::1::points::%player%}%" to be unstealable
+        format slot 5 of player with stained glass pane:0 named " " to be unstealable
+        format slot 6 of player with stained glass pane:3 named " " to be unstealable
+        format slot 7 of player with stained glass pane:0 named " " to be unstealable
+        format slot 8 of player with stained glass pane:3 named " " to be unstealable
+        format slot 9 of player with stained glass pane:0 named " " to be unstealable
+        format slot 17 of player with stained glass pane:0 named " " to be unstealable
+        format slot 18 of player with stained glass pane:3 named " " to be unstealable
+        format slot 26 of player with stained glass pane:3 named " " to be unstealable
+        format slot 27 of player with stained glass pane:0 named " " to be unstealable
+        format slot 35 of player with stained glass pane:0 named " " to be unstealable
+        format slot 36 of player with stained glass pane:3 named " " to be unstealable
+        format slot 37 of player with stained glass pane:0 named " " to be unstealable
+        format slot 38 of player with stained glass pane:3 named " " to be unstealable
+        format slot 39 of player with stained glass pane:0 named " " to be unstealable
+        format slot 40 of player with arrow named "&c&lRetour" to run [make player execute command "/shoppvp"]
+        format slot 41 of player with stained glass pane:0 named " " to be unstealable
+        format slot 42 of player with stained glass pane:3 named " " to be unstealable
+        format slot 43 of player with stained glass pane:0 named " " to be unstealable
+        format slot 44 of player with stained glass pane:3 named " " to be unstealable
+        format slot 11 of player with diamond sword of sharpness 1 and unbreaking 3 named "&b&lÉpée 1" with lore "&f&l5000⭐||&eCliquer pour acheter !" to run [make player execute command "/buy sword1"]
+        format slot 12 of player with diamond sword of sharpness 2 and unbreaking 3 named "&b&lÉpée 2" with lore "&f&l5000⭐||&eCliquer pour acheter !" to run [make player execute command "/buy sword2"]
+        format slot 13 of player with diamond sword of sharpness 3 and unbreaking 3 named "&b&lÉpée 3" with lore "&f&l5000⭐||&eCliquer pour acheter !" to run [make player execute command "/buy sword3"]
+        format slot 14 of player with diamond sword of sharpness 4 and unbreaking 3 named "&b&lÉpée 4" with lore "&f&l5000⭐||&eCliquer pour acheter !" to run [make player execute command "/buy sword4"]
+        format slot 15 of player with diamond sword of sharpness 5 and unbreaking 3 named "&b&lÉpée 5" with lore "&f&l5000⭐||&eCliquer pour acheter !" to run [make player execute command "/buy sword5"]
+        format slot 20 of player with bow of unbreaking 3 named "&b&lArc 1" with lore "&f&l2000⭐||&eCliquer pour acheter !" to run [make player execute command "/buy bow1"]
+        format slot 21 of player with bow of unbreaking 3 named "&b&lArc 2" with lore "&f&l2000⭐||&eCliquer pour acheter !" to run [make player execute command "/buy bow2"]
+        format slot 22 of player with bow of unbreaking 3 named "&b&lArc 3" with lore "&f&l2000⭐||&eCliquer pour acheter !" to run [make player execute command "/buy bow3"]
+        format slot 23 of player with bow of unbreaking 3 named "&b&lArc 4" with lore "&f&l2000⭐||&eCliquer pour acheter !" to run [make player execute command "/buy bow4"]
+        format slot 24 of player with bow of unbreaking 3 named "&b&lArc 5" with lore "&f&l2000⭐||&eCliquer pour acheter !" to run [make player execute command "/buy bow5"]
+
+
+command /§shoppvpsoin:
+    trigger:
+        set {_skull} to player's skull
+        open chest with 5 rows named "&b&lSoin" to player
+        wait 3 tick
+        format slot 0 of player with stained glass pane:3 named " " to be unstealable
+        format slot 1 of player with stained glass pane:0 named " " to be unstealable
+        format slot 2 of player with stained glass pane:3 named " " to be unstealable
+        format slot 3 of player with stained glass pane:0 named " " to be unstealable
+        format slot 4 of player with {_skull} named "&b&l%player%" with lore "&f&lPoint : &b%{str::1::points::%player%}%" to be unstealable
+        format slot 5 of player with stained glass pane:0 named " " to be unstealable
+        format slot 6 of player with stained glass pane:3 named " " to be unstealable
+        format slot 7 of player with stained glass pane:0 named " " to be unstealable
+        format slot 8 of player with stained glass pane:3 named " " to be unstealable
+        format slot 9 of player with stained glass pane:0 named " " to be unstealable
+        format slot 17 of player with stained glass pane:0 named " " to be unstealable
+        format slot 18 of player with stained glass pane:3 named " " to be unstealable
+        format slot 26 of player with stained glass pane:3 named " " to be unstealable
+        format slot 27 of player with stained glass pane:0 named " " to be unstealable
+        format slot 35 of player with stained glass pane:0 named " " to be unstealable
+        format slot 36 of player with stained glass pane:3 named " " to be unstealable
+        format slot 37 of player with stained glass pane:0 named " " to be unstealable
+        format slot 38 of player with stained glass pane:3 named " " to be unstealable
+        format slot 39 of player with stained glass pane:0 named " " to be unstealable
+        format slot 40 of player with arrow named "&c&lRetour" to run [make player execute command "/shoppvp"]
+        format slot 41 of player with stained glass pane:0 named " " to be unstealable
+        format slot 42 of player with stained glass pane:3 named " " to be unstealable
+        format slot 43 of player with stained glass pane:0 named " " to be unstealable
+        format slot 44 of player with stained glass pane:3 named " " to be unstealable
+        format slot 10 of player with 322 named "&b&lPomme en Or" with lore "&f&l2000⭐||&eCliquer pour acheter !" to run [make player execute command "/buy gapple"]
+        format slot 11 of player with 373:16421 named "&b&lPotion de Soin II" with lore "&f&l2000⭐||&eCliquer pour acheter !" to run [make player execute command "/buy healsplashII"]
+        format slot 12 of player with 373:16389 named "&b&lPotion de Soin I" with lore "&f&l2000⭐||&eCliquer pour acheter !" to run [make player execute command "/buy healsplashI"]
+
+command /§shoppvparmure:
+    trigger:
+        set {_skull} to player's skull
+        open chest with 5 rows named "&b&lArmure" to player
+        wait 3 tick
+        format slot 0 of player with stained glass pane:3 named " " to be unstealable
+        format slot 1 of player with stained glass pane:0 named " " to be unstealable
+        format slot 2 of player with stained glass pane:3 named " " to be unstealable
+        format slot 3 of player with stained glass pane:0 named " " to be unstealable
+        format slot 4 of player with {_skull} named "&b&l%player%" with lore "&f&lPoint : &b%{str::1::points::%player%}%" to be unstealable
+        format slot 5 of player with stained glass pane:0 named " " to be unstealable
+        format slot 6 of player with stained glass pane:3 named " " to be unstealable
+        format slot 7 of player with stained glass pane:0 named " " to be unstealable
+        format slot 8 of player with stained glass pane:3 named " " to be unstealable
+        format slot 9 of player with stained glass pane:0 named " " to be unstealable
+        format slot 17 of player with stained glass pane:0 named " " to be unstealable
+        format slot 18 of player with stained glass pane:3 named " " to be unstealable
+        format slot 26 of player with stained glass pane:3 named " " to be unstealable
+        format slot 27 of player with stained glass pane:0 named " " to be unstealable
+        format slot 35 of player with stained glass pane:0 named " " to be unstealable
+        format slot 36 of player with stained glass pane:3 named " " to be unstealable
+        format slot 37 of player with stained glass pane:0 named " " to be unstealable
+        format slot 38 of player with stained glass pane:3 named " " to be unstealable
+        format slot 39 of player with stained glass pane:0 named " " to be unstealable
+        format slot 40 of player with arrow named "&c&lRetour" to run [make player execute command "/shoppvp"]
+        format slot 41 of player with stained glass pane:0 named " " to be unstealable
+        format slot 42 of player with stained glass pane:3 named " " to be unstealable
+        format slot 43 of player with stained glass pane:0 named " " to be unstealable
+        format slot 44 of player with stained glass pane:3 named " " to be unstealable
+        format slot 11 of player with diamond helmet of protection 4 and unbreaking 3 named "&b&lCasque 3" with lore "&f&l2000⭐||&eCliquer pour acheter !" to run [make player execute command "/buy helmet3"]
+        format slot 12 of player with diamond chestplate of protection 4 and unbreaking 3 named "&b&lPlastron 3" with lore "&f&l2000⭐||&eCliquer pour acheter !" to run [make player execute command "/buy chestplate3"]
+        format slot 14 of player with diamond leggings of protection 4 and unbreaking 3 named  "&b&lJambière 3" with lore "&f&l2000⭐||&eCliquer pour acheter !" to run [make player execute command "/buy leggings3"]
+        format slot 15 of player with diamond boots of protection 4 and unbreaking 3 named "&b&lBottes 3" with lore "&f&l2000⭐||&eCliquer pour acheter !" to run [make player execute command "/buy boots3"]
+        format slot 20 of player with diamond helmet of unbreaking 3 named "&b&lCasque 2" with lore "&f&l2000⭐||&eCliquer pour acheter !" to run [make player execute command "/buy helmet2"]
+        format slot 21 of player with diamond chestplate of unbreaking 3 named "&b&lPlastron 2" with lore "&f&l2000⭐||&eCliquer pour acheter !" to run [make player execute command "/buy chestplate2"]
+        format slot 23 of player with diamond leggings of unbreaking 3 named "&b&lJambière 2" with lore "&f&l2000⭐||&eCliquer pour acheter !" to run [make player execute command "/buy leggings2"]
+        format slot 24 of player with diamond boots of unbreaking 3 named "&b&lBottes 2" with lore "&f&l2000⭐||&eCliquer pour acheter !" to run [make player execute command "/buy boots2"]
+        format slot 29 of player with diamond helmet of unbreaking 3 named "&b&lCasque 1" with lore "&f&l2000⭐||&eCliquer pour acheter !" to run [make player execute command "/buy helmet1"]
+        format slot 30 of player with diamond chestplate of unbreaking 3 named "&b&lPlastron 1" with lore "&f&l2000⭐||&eCliquer pour acheter !" to run [make player execute command "/buy chestplate1"]
+        format slot 32 of player with diamond leggings of unbreaking 3 named "&b&lJambière 1" with lore "&f&l2000⭐||&eCliquer pour acheter !" to run [make player execute command "/buy leggings1"]
+        format slot 33 of player with diamond boots of unbreaking 3 named "&b&lBottes 1" with lore "&f&l2000⭐||&eCliquer pour acheter !" to run [make player execute command "/buy boots1"]
+
+
+command /§shoppvpautre:
+    trigger:
+        set {_skull} to player's skull
+        open chest with 5 rows named "&b&lAutre" to player
+        wait 3 tick
+        format slot 0 of player with stained glass pane:3 named " " to be unstealable
+        format slot 1 of player with stained glass pane:0 named " " to be unstealable
+        format slot 2 of player with stained glass pane:3 named " " to be unstealable
+        format slot 3 of player with stained glass pane:0 named " " to be unstealable
+        format slot 4 of player with {_skull} named "&b&l%player%" with lore "&f&lPoint : &b%{str::1::points::%player%}%" to be unstealable
+        format slot 5 of player with stained glass pane:0 named " " to be unstealable
+        format slot 6 of player with stained glass pane:3 named " " to be unstealable
+        format slot 7 of player with stained glass pane:0 named " " to be unstealable
+        format slot 8 of player with stained glass pane:3 named " " to be unstealable
+        format slot 9 of player with stained glass pane:0 named " " to be unstealable
+        format slot 17 of player with stained glass pane:0 named " " to be unstealable
+        format slot 18 of player with stained glass pane:3 named " " to be unstealable
+        format slot 26 of player with stained glass pane:3 named " " to be unstealable
+        format slot 27 of player with stained glass pane:0 named " " to be unstealable
+        format slot 35 of player with stained glass pane:0 named " " to be unstealable
+        format slot 36 of player with stained glass pane:3 named " " to be unstealable
+        format slot 37 of player with stained glass pane:0 named " " to be unstealable
+        format slot 38 of player with stained glass pane:3 named " " to be unstealable
+        format slot 39 of player with stained glass pane:0 named " " to be unstealable
+        format slot 40 of player with arrow named "&c&lRetour" to run [make player execute command "/shoppvp"]
+        format slot 41 of player with stained glass pane:0 named " " to be unstealable
+        format slot 42 of player with stained glass pane:3 named " " to be unstealable
+        format slot 43 of player with stained glass pane:0 named " " to be unstealable
+        format slot 44 of player with stained glass pane:3 named " " to be unstealable
+        format slot 10 of player with fishing rod of unbreaking 3 named "&b&lCanne a pèche" with lore "&f&l2000⭐||&eCliquer pour acheter !" to run [make player execute command "/buy rod"]
+        format slot 11 of player with water bucket named "&b&lSceau d'eau" with lore "&f&l2000⭐||&eCliquer pour acheter !" to run [make player execute command "/buy water"]
+        format slot 12 of player with lava bucket named "&b&lSceau de lave" with lore "&f&l2000⭐||&eCliquer pour acheter !" to run [make player execute command "/buy lava"]
+        format slot 13 of player with 8 arrow named "&b&lFlèche" with lore "&f&l2000⭐||&eCliquer pour acheter !" to run [make player execute command "/buy arrow"]
+        format slot 14 of player with ender pearl named "&b&lPearl du néant" with lore "&f&l2000⭐||&eCliquer pour acheter !" to run [make player execute command "/buy pearl"]
+
+command /§shoppvpblock:
+    trigger:
+        set {_skull} to player's skull
+        open chest with 5 rows named "&b&lBlock" to player
+        wait 3 tick
+        format slot 0 of player with stained glass pane:3 named " " to be unstealable
+        format slot 1 of player with stained glass pane:0 named " " to be unstealable
+        format slot 2 of player with stained glass pane:3 named " " to be unstealable
+        format slot 3 of player with stained glass pane:0 named " " to be unstealable
+        format slot 4 of player with {_skull} named "&b&l%player%" with lore "&f&lPoint : &b%{str::1::points::%player%}%" to be unstealable
+        format slot 5 of player with stained glass pane:0 named " " to be unstealable
+        format slot 6 of player with stained glass pane:3 named " " to be unstealable
+        format slot 7 of player with stained glass pane:0 named " " to be unstealable
+        format slot 8 of player with stained glass pane:3 named " " to be unstealable
+        format slot 9 of player with stained glass pane:0 named " " to be unstealable
+        format slot 17 of player with stained glass pane:0 named " " to be unstealable
+        format slot 18 of player with stained glass pane:3 named " " to be unstealable
+        format slot 26 of player with stained glass pane:3 named " " to be unstealable
+        format slot 27 of player with stained glass pane:0 named " " to be unstealable
+        format slot 35 of player with stained glass pane:0 named " " to be unstealable
+        format slot 36 of player with stained glass pane:3 named " " to be unstealable
+        format slot 37 of player with stained glass pane:0 named " " to be unstealable
+        format slot 38 of player with stained glass pane:3 named " " to be unstealable
+        format slot 39 of player with stained glass pane:0 named " " to be unstealable
+        format slot 40 of player with arrow named "&c&lRetour" to run [make player execute command "/shoppvp"]
+        format slot 41 of player with stained glass pane:0 named " " to be unstealable
+        format slot 42 of player with stained glass pane:3 named " " to be unstealable
+        format slot 43 of player with stained glass pane:0 named " " to be unstealable
+        format slot 44 of player with stained glass pane:3 named " " to be unstealable
+        format slot 10 of player with 16 cobblestone named "&b&l16x Cobblestone" with lore "&f&l2000⭐||&eCliquer pour acheter !" to run [make player execute command "/buy cobblestone"]

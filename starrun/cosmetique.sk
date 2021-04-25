@@ -1,0 +1,10 @@
+command /nyancat:
+    trigger:
+        if {particle.%player%} is true:
+            stopEffect "nyancat.%player%"
+            send "UwUUwU"
+            set {particle.%player%} to false
+        else:
+            set {particle.%player%} to true
+            drawNyanCat center player, id "nyancat.%player%", visibleRange 30
+            send "UwU"

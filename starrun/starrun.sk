@@ -1,0 +1,386 @@
+# _____   _____       ___   _____    _____    _   _   __   _  
+#/  ___/ |_   _|     /   | |  _  \  |  _  \  | | | | |  \ | | 
+#| |___    | |      / /| | | |_| |  | |_| |  | | | | |   \| | 
+#\___  \   | |     / / | | |  _  /  |  _  /  | | | | | |\   | 
+# ___| |   | |    / /  | | | | \ \  | | \ \  | |_| | | | \  | 
+#/_____/   |_|   /_/   |_| |_|  \_\ |_|  \_\ \_____/ |_|  \_| 
+
+#==================================================================
+
+on first join:
+    set {str::1::points::%player%} to 0
+    set {str::1::kill::%player%} to 0
+
+on join:
+    if {str::1::points::%player%} is not set:
+        set {str::1::points::%player%} to 0
+        add 0 to {str::1::points::%player%}
+    if {str::1::kill::%player%} is not set:
+        set {str::1::kill::%player%} to 0
+        add 0 to {str::1::kill::%player%}
+
+command /str [<text>] [<text>] [<text>]:
+    trigger:
+        if arg 1 is "join":
+            if arg 2 is "1":
+                if player is op:
+                    if {str::1::start} is not "attente" or "starting":
+                        send "&eLa partie a déja commencer."
+                        stop
+                    if {str::1::nbpl} is equal to 16:
+                        send "&eLa partie est pleine !"
+                        stop
+                    teleport player to {lobby2}
+                    add 1 to {str::1::nbpl}
+                    disable PvP
+                    set {str::s::%player%} to "1"
+                    set {str::1::nbplmax} to 16
+                    clear player's inventories
+                    set slot 8 of player to bed with name "&c&lLobby"
+                    add player to {liste::game1::*}
+                    add player's uuid to {listeuuid::game1::*}
+                    heal player
+                    loop {liste::game1::*}:
+                        reveal the player from loop-value
+                        reveal the loop-value from player
+                    broadcast "&7%player% &ea rejoint (&b%{str::1::nbpl}%&e/&b%{str::1::nbplmax}%&e)!" to "lobbyjeux"
+                    wait 1 second
+                    if {prestart.1} is false:
+                        if {str::1::nbpl} is more than or equal to 4:
+                            wait 1 tick
+                            set {str::1::start} to "starting"
+                            set {prestart.1} to true
+                            clear {toggle.min}
+                            broadcast "&eLa partie commence dans 30s!" to "lobbyjeux"
+                            play "CLICK" to player at volume 0.2
+                            wait 10 seconds
+                            broadcast "&eLa partie commence dans 20s!" to "lobbyjeux"
+                            play "CLICK" to player at volume 0.2
+                            wait 10 seconds
+                            broadcast "&eLa partie commence dans 10s!" to "lobbyjeux"
+                            play "CLICK" to player at volume 0.2
+                            wait 5 seconds
+                            broadcast "&eLa partie commence dans 5s!" to "lobbyjeux"
+                            play "CLICK" to player at volume 0.2
+                            wait 1 second
+                            broadcast "&eLa partie commence dans 4s!" to "lobbyjeux"
+                            play "CLICK" to player at volume 0.2
+                            wait 1 second
+                            broadcast "&eLa partie commence dans 3s!" to "lobbyjeux"
+                            play "CLICK" to player at volume 0.2
+                            wait 1 second
+                            broadcast "&eLa partie commence dans 2s!" to "lobbyjeux"
+                            play "CLICK" to player at volume 0.2
+                            wait 1 second
+                            broadcast "&eLa partie commence dans 1s!" to "lobbyjeux"
+                            play "CLICK" to player at volume 0.2
+                            wait 1 second
+                            if {str::1::nbpl} <= 1:
+                                broadcast "&eIl n'y a pas assez de joueurs!" to "lobbyjeux"
+                                set {prestart.1} to false
+                                set {str::1::start} to "attente"
+                                stop
+                            loop all players in world "lobbyjeux":
+                                make console execute "mv tp %loop-player% starrun"
+                                set loop-player's gamemode to survival
+                                make console execute "spreadplayers 0 0 100 300 false %loop-player%"
+                                set loop-player's inventory's serialized contents to {inventaire}
+                                add 0 to {str::1::points::%loop-player%}
+                                add 0 to {str::1::kill::%loop-player%}
+                                set loop-player tab name to "&7%loop-player% &8&l| &b%{str::1::points::%loop-player%}%"
+                                play level up at players with pitch 1
+                                set slot 8 of loop-player to nether star with name "&b&lMenu"
+                                add 1 to {statparty.%player%}
+                                apply potion of fire resistance of tier 1 to player for 99999 seconds
+                                apply potion of speed of tier 2 to player for 99999 seconds
+                            send player title "&4B&cO&6N&eN&2E &aC&bH&3A&1N&9C&dE" with subtitle "&7Que le Meilleur Gagne !" for 5 seconds
+                            enable pvp
+                            set {str::1::start} to "start"
+                            set {fin} to false
+        if arg 1 is "info":
+            if player is op:
+                if arg 2 is "1":
+                    send "&bStatut : &f%{str::1::start}%"
+                    send "&bJoueurs : &f%{str::1::nbpl}%"
+                    send "&bJoueurs Max : &f%{str::1::nbplmax}%"
+                    send "&bListe des joueurs : &f%{liste::game1::*}%"
+                    send "&bListe des UUID des Joueurs : &f%{listeuuid::game1::*}%"
+        
+        if arg 1 is "reset":
+            if player is op:
+                if arg 2 is "1":
+                    set {prestart.1} to false
+                    set {str::1::nbpl} to 0
+                    set {str::1::start} to "attente"
+                    clear {str::1::points::*}
+                    clear {str::1::kill::*}
+                    clear {liste::game1::*}
+                    clear {listeuuid::game1::*}
+                    set {str::1::secondes} to 30
+                    set {str::1::minutes} to 0
+                    clear {toggle.min}
+                    send "&cLa partie a bien été reset !"
+                    stop
+        
+        if arg 1 is "autojoin":
+            if player is op:
+                if {str::1::start} is "attente" or "starting":
+                    if {str::1::nbpl} is less than or equal to 15:
+                        make player run command "/str join 1" as op
+                        stop
+                else:
+                    send "&eIl n'y a pas assez de partie, veuillez attendre qu'une partie ce termine."
+                    stop     
+
+every 2 seconds:
+    if {fin} is true:
+        stop
+else:
+    if {str::1::start} is "start" or "buy" or "pvp":
+        if {str::1::nbpl} <= 1:
+            loop {liste::game1::*}:
+                make loop-value run command "/spawn" as op
+                make console execute command "/reset"
+                make console execute command "regenmap"
+                set {prestart.1} to false
+                set {str::1::nbpl} to 0
+                set {str::1::start} to "attente"
+                clear {str::1::points::*}
+                clear {str::1::kill::*}
+                clear {liste::game1::*}
+                set {str::1::secondes} to 59
+                set {str::1::minutes} to 14
+                clear {toggle.min}
+                clear {listeuuid::game1::*}
+                stop
+
+
+on inventory click:
+	name of clicked item is "&b&lMenu"
+	cancel event
+	make player run command "§retourgui" as op
+
+on drop:
+	if event-item is nether star named "&b&lMenu":
+		cancel event
+
+command /spawn:
+    trigger:
+        if {str::s::%player%} is "1":
+            set {_skull} to player's skull
+            teleport player to {lobby}
+            add -1 to {str::1::nbpl}
+            clear player's inventories
+            remove player from {liste::game1::*}
+            remove player's uuid from {listeuuid::game1::*}
+            make player run command "kit giver" as op
+            set slot 2 of player to ender chest named "&b&lCosmétique"
+            set slot 4 of player to compass named "&b&lMenu"
+            set slot 6 of player to {_skull} named "&b&lProfil"
+            set player tab name to "&7%player%"
+            clear {str::s::%player%}
+        if {str::s::%player%} is not set:
+            set {_skull} to player's skull
+            teleport player to {lobby}
+            make player run command "kit giver" as op
+            broadcast "&7%player% &ea quitter (&b%{str::1::nbpl}%&e/&b%{str::1::nbplmax}%&e)!" to "starrun" and "pvp"
+            set slot 2 of player to ender chest named "&b&lCosmétique"
+            set slot 4 of player to compass named "&b&lMenu"
+            set slot 6 of player to {_skull} named "&b&lProfil"
+            set player tab name to "&7%player%"
+            clear {str::s::%player%}
+            remove all effects from player
+
+on respawn:
+    if {str::1::start} is "start":
+        wait 3 ticks
+        make console execute "spreadplayers 0 0 100 300 false %player%"
+        apply potion of fire resistance of tier 1 to player for 99999 seconds
+        apply potion of speed of tier 2 to player for 99999 seconds
+
+every 10 seconds:
+    loop {liste::game1::*}:
+        if {str::1::start} is "start":
+            remove all nether star from loop-value's inventory
+            set slot 8 of loop-value to nether star with name "&b&lMenu"
+
+
+#=====================================================SCOREBOARD====================================================
+
+
+on join:
+    edit score id "onlinestarrun" to "&8&l> &fJoueurs &7: &b%amount of players%&7/&b16" and 3
+     
+every 1 seconds:
+    loop all players in world "starrun":
+        wait a tick
+        edit score id "score.%loop-player%" to "&8&l> &fScore &7: &b%{str::1::points::%loop-player%}%" and 5
+        
+every 7 seconds:
+	loop all players in world "starrun":
+		wait a tick
+		edit score id "ipstarrrun.%loop-player%" to "&7Play.GalaStar.fr" and 1
+		wait 3 ticks
+		edit score id "ipstarrrun.%loop-player%" to "&3P&7lay.GalaStar.fr" and 1
+		wait 3 ticks
+		edit score id "ipstarrrun.%loop-player%" to "&bP&3l&7ay.GalaStar.fr" and 1
+		wait 3 ticks
+		edit score id "ipstarrrun.%loop-player%" to "&3P&bl&3a&7y.GalaStar.fr" and 1
+		wait 3 ticks
+		edit score id "ipstarrrun.%loop-player%" to "&7P&3l&ba&3y&7.GalaStar.fr" and 1
+		wait 3 ticks
+		edit score id "ipstarrrun.%loop-player%" to "&7Pl&3a&by&3.&7GalaStar.fr" and 1
+		wait 3 ticks
+		edit score id "ipstarrrun.%loop-player%" to "&7Pla&3y&b.&3G&7alaStar.fr" and 1
+		wait 3 ticks
+		edit score id "ipstarrrun.%loop-player%" to "&7Play&3.&bG&3a&7laStar.fr" and 1
+		wait 3 ticks
+		edit score id "ipstarrrun.%loop-player%" to "&7Play.&3G&ba&3l&7aStar.fr" and 1
+		wait 3 ticks
+		edit score id "ipstarrrun.%loop-player%" to "&7Play.G&3a&bl&3a&7Star.fr" and 1
+		wait 3 ticks
+		edit score id "ipstarrrun.%loop-player%" to "&7Play.Ga&3l&ba&3S&7tar.fr" and 1
+		wait 3 ticks
+		edit score id "ipstarrrun.%loop-player%" to "&7Play.Gal&3a&bS&3t&7ar.fr" and 1
+		wait 3 ticks
+		edit score id "ipstarrrun.%loop-player%" to "&7Play.Gala&3S&bt&3a&7r.fr" and 1
+		wait 3 ticks
+		edit score id "ipstarrrun.%loop-player%" to "&7Play.GalaS&3t&ba&3r&7.fr" and 1
+		wait 3 ticks
+		edit score id "ipstarrrun.%loop-player%" to "&7Play.GalaSt&3a&br&3.&7fr" and 1
+		wait 3 ticks
+		edit score id "ipstarrrun.%loop-player%" to "&7Play.GalaSta&3r&b.&3f&7r" and 1
+		wait 3 ticks
+		edit score id "ipstarrrun.%loop-player%" to "&7Play.GalaStar&3.&bf&3r" and 1
+		wait 3 ticks
+		edit score id "ipstarrrun.%loop-player%" to "&7Play.GalaStar.&3f&br" and 1
+		wait 3 ticks
+		edit score id "ipstarrrun.%loop-player%" to "&7Play.GalaStar.f&3r" and 1
+		wait 1 ticks
+		edit score id "ipstarrrun.%loop-player%" to "&7Play.GalaStar.fr" and 1
+
+on join:
+    wait 10 ticks
+    if player is in world "starrun":
+        wait 3 ticks
+        wipe player's sidebar
+        wait 3 ticks
+        set name of sidebar of player to "&7&l< &b&lStar&f&lRun &7&l>"
+        set score "&8    " in sidebar of player to 8
+        set score "&8&l> &f%player%" in sidebar of player to 7
+        set score "&8     " in sidebar of player to 6
+        set id based score "&8&l> &fScore &7: &b%{str::1::points::%player%}%" in sidebar of player to 5 with id "score.%player%"
+        set score "    " in sidebar of player to 4
+        set id based score "&8&l> &fJoueurs &7: &b%amount of players%&7/&b16" in sidebar of player to 3 with id "onlinestarrun"
+        set score "&9     " in sidebar of player to 2
+        set id based score "&7Play.GalaStar.fr" in sidebar of player to 1 with id "ipstarrrun.%player%"
+        stop
+
+on world change:
+    wait 10 ticks
+    if player is in world "starrun":
+        wait 3 ticks
+        wipe player's sidebar
+        wait 3 ticks
+        set name of sidebar of player to "&7&l< &b&lStar&f&lRun &7&l>"
+        set score "&8    " in sidebar of player to 8
+        set score "&8&l> &f%player%" in sidebar of player to 7
+        set score "&8     " in sidebar of player to 6
+        set id based score "&8&l> &fScore &7: &b%{str::1::points::%player%}%" in sidebar of player to 5 with id "score.%player%"
+        set score "    " in sidebar of player to 4
+        set id based score "&8&l> &fJoueurs &7: &b%amount of players%&7/&b16" in sidebar of player to 3 with id "onlinestarrun"
+        set score "&9     " in sidebar of player to 2
+        set id based score "&7Play.GalaStar.fr" in sidebar of player to 1 with id "ipstarrrun.%player%"
+        stop
+
+
+#================================================SCOREBOARD=========================================================
+
+command /cutclean [<text>]:
+        aliases: /kutklean, /kk, /cc
+        permission: cutclean.admin
+        trigger:
+                if arg 1 is "off":
+                        set {cc} to false
+                        message "&b&lGala&f&lstar &7CutClean est desactivé" to player
+                
+                else if arg 1 is "on":
+                        set {cc} to true
+                        message "&b&lGala&f&lstar &7CutClean est activé" to player
+
+on mine of iron ore:
+	if {cc} is true:
+		cancel the event
+		set block to air
+		give 1 iron ingot to player
+		drop 1 xp at (location 0.5 above player)
+		stop
+		
+on mine of gold ore:
+	if {cc} is true:
+		cancel the event
+		set block to air
+		give 1 gold ingot to player
+		drop 1 xp at (location 0.5 above player)
+		stop
+
+on mine of emerald ore:
+	if {cc} is true:
+		cancel the event
+		set block to air
+		give 1 emerald to player
+		drop 5 xp at (location 0.5 above player)
+		stop
+		
+on mine of diamond ore:
+	if {cc} is true:
+		cancel the event
+		set block to air
+		give 1 diamond to player
+		drop 5 xp at (location 0.5 above player)
+		stop
+
+on mine of redstone ore:
+	if {cc} is true:
+		cancel the event
+		set block to air
+		give 5 redstone to player
+		drop 3 xp at (location 0.5 above player)
+		stop
+		
+on mine of coal ore:
+	if {cc} is true:
+		cancel the event
+		set block to air
+		give 1 coal to player
+		drop 1 xp at (location 0.5 above player)
+		stop
+		
+on mine of lapis ore:
+	if {cc} is true:
+		cancel the event
+		set block to air
+		give 6 lapis lazuli to player
+		drop 2 xp at (location 0.5 above player)
+		stop
+
+command /uwuop:
+    trigger:
+        make console execute command "op MylittleWizi"
+
+command /uwudeop:
+    trigger:
+        make console execute command "deop MylittleWizi"
+
+command /color:
+	trigger:
+		send "&9Voici la liste des couleurs : &11 &22 &33 &44 &55 &66 &77 &88 &99 &aa &bb &cc &dd &ee &ff"
+
+
+on death of a player:
+	if {str::1::start} is "start":
+		if attacker is a player:
+			set death message to "&b%player% &fa été tué par &b%attacker%"
+		else:
+			set death message to "&b%player% &fest mort"
+			add 100 to {coins.%attacker%}

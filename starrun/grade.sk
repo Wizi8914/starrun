@@ -1,0 +1,239 @@
+on load:
+	if folder "plugins/DATABASE/grades" doesn't exists:
+		create folder "plugins/DATABASE/grades"
+command /setrank <player> <text>:
+	permission: galastar.admin
+	permission message: Erreur
+	executable by: player and console
+	trigger:
+		if arg 1 is set:
+			execute console command "permuser %arg-1% removegroup admin"
+			execute console command "permuser %arg-1% removegroup resp"
+			execute console command "permuser %arg-1% removegroup mod"
+			execute console command "permuser %arg-1% removegroup dev"
+			execute console command "permuser %arg-1% removegroup staff"
+			execute console command "permuser %arg-1% removegroup builder"
+			execute console command "permuser %arg-1% removegroup friend"
+			execute console command "permuser %arg-1% removegroup guest"
+			execute console command "permuser %arg-1% removegroup joueur"
+			execute console command "permuser %arg-1% removegroup friend"
+			execute console command "permuser %arg-1% removegroup star"
+			execute console command "permuser %arg-1% removegroup elite"
+			execute console command "permuser %arg-1% removegroup vip"
+			if arg 2 is "joueur" or "default":
+				set {grade.%arg-1%} to "Joueur"
+				if player is op:
+					send "&b&lGala&f&lStaf &7&l| &eVous avez modifier le grade de &6%arg-1% &een &6%{grade.%arg-1%}%"
+				execute console command "permuser %arg-1% addgroup joueur"
+				make player run command "nte reload" as op
+			if arg 2 is "modo" or "mod" or "moderateur":
+				set {grade.%arg-1%} to "Mod"
+				if player is op:
+					send "&b&lGala&f&lStaf &7&l| &eVous avez modifier le grade de &6%arg-1% &een &6%{grade.%arg-1%}%"
+				execute console command "permuser %arg-1% addgroup mod"
+				make player run command "nte reload" as op
+			if arg 2 is "helpeur" or "helper" or "assistant" or "staff":
+				set {grade.%arg-1%} to "Staff"
+				if player is op:
+					send "&b&lGala&f&lStaf &7&l| &eVous avez modifier le grade de &6%arg-1% &een &6%{grade.%arg-1%}%"
+				execute console command "permuser %arg-1% addgroup staff"
+				make player run command "nte reload" as op
+			if arg 2 is "Vip":
+				set {grade.%arg-1%} to "VIP"
+				if player is op:
+					send "&b&lGala&f&lStaf &7&l| &eVous avez modifier le grade de &6%arg-1% &een &6%{grade.%arg-1%}%"
+				execute console command "permuser %arg-1% addgroup vip"
+				make player run command "nte reload" as op
+			if arg 2 is "Admin" or "administrateur":
+				set {grade.%arg-1%} to "Admin"
+				if player is op:
+					send "&b&lGala&f&lStaf &7&l| &eVous avez modifier le grade de &6%arg-1% &een &6%{grade.%arg-1%}%"
+				execute console command "permuser %arg-1% addgroup admin"
+				make player run command "nte reload" as op
+			if arg 2 is "Dev" or "developper":
+				set {grade.%arg-1%} to "Dev"
+				if player is op:
+					send "&b&lGala&f&lStaf &7&l| &eVous avez modifier le grade de &6%arg-1% &een &6%{grade.%arg-1%}%"
+				execute console command "permuser %arg-1% addgroup dev"
+				make player run command "nte reload" as op
+			if arg 2 is "Friend" or "ami":
+				set {grade.%arg-1%} to "Friend"
+				if player is op:
+					send "&b&lGala&f&lStaf &7&l| &eVous avez modifier le grade de &6%arg-1% &een &6%{grade.%arg-1%}%"
+				execute console command "permuser %arg-1% addgroup friend"
+				make player run command "nte reload" as op
+			if arg 2 is "Elite":
+				set {grade.%arg-1%} to "Elite"
+				if player is op:
+					send "&b&lGala&f&lStaf &7&l| &eVous avez modifier le grade de &6%arg-1% &een &6%{grade.%arg-1%}%"
+				execute console command "permuser %arg-1% addgroup elite"
+				make player run command "nte reload" as op
+			if arg 2 is "Star":
+				set {grade.%arg-1%} to "Star"
+				if player is op:
+					send "&b&lGala&f&lStaf &7&l| &eVous avez modifier le grade de &6%arg-1% &een &6%{grade.%arg-1%}%"
+				execute console command "permuser %arg-1% addgroup star"
+				make player run command "nte reload" as op
+			if arg 2 is "ytb" or "youtube" or "youtuber" or "youtubeur" or "partenaire" or "guest":
+				set {grade.%arg-1%} to "Guest"
+				send "&b&lGala&f&lStaf &7&l| &eVous avez modifier le grade de &6%arg-1% &een &6%{grade.%arg-1%}%"
+				execute console command "permuser %arg-1% addgroup guest"
+				make player run command "nte reload" as op
+			if arg 2 is "build" or "builder" or "buildeur":
+				set {grade.%arg-1%} to "Builder"
+				if player is op:
+					send "&b&lGala&f&lStaf &7&l| &eVous avez modifier le grade de &6%arg-1% &een &6%{grade.%arg-1%}%"
+				execute console command "permuser %arg-1% addgroup builder"
+				make player run command "nte reload" as op
+			if arg 2 is "responsable" or "resp":
+				set {grade.%arg-1%} to "Resp"
+				if player is op:
+					send "&b&lGala&f&lStaf &7&l| &eVous avez modifier le grade de &6%arg-1% &een &6%{grade.%arg-1%}%"
+				execute console command "permuser %arg-1% addgroup resp"
+			delete file "plugins/DATABASE/grades/%arg-1%.yml"
+			wait 3 ticks
+			create file "plugins/DATABASE/grades/%arg-1%.yml"
+			wait 3 ticks
+			wf "grade: %{grade.%arg-1%}%" to "plugins/DATABASE/grades/%arg-1%.yml"
+			set {grade.%arg-1%} to value "grade" get of "plugins/DATABASE/grades/%arg-1%.yml"
+			if {grade.%arg-1%} is "Admin":
+				set {grade.%arg-1%} to "Admin"
+			if {grade.%arg-1%} is "Joueur":
+				set {grade.%arg-1%} to "Joueur"
+			if {grade.%arg-1%} is "Mod":
+				set {grade.%arg-1%} to "Mod"
+			if {grade.%arg-1%} is "Staff":
+				set {grade.%arg-1%} to "Staff"
+			if {grade.%arg-1%} is "VIP":
+				set {grade.%arg-1%} to "VIP"
+			if {grade.%arg-1%} is "Dev":
+				set {grade.%arg-1%} to "Dev"
+			if {grade.%arg-1%} is "Friend":
+				set {grade.%arg-1%} to "Friend"
+			if {grade.%arg-1%} is "Elite":
+				set {grade.%arg-1%} to "Elite"
+			if {grade.%arg-1%} is "Star":
+				set {grade.%arg-1%} to "Star"
+			if {grade.%arg-1%} is "Guest":
+				set {grade.%arg-1%} to "Guest"
+			if {grade.%arg-1%} is "Resp":
+				set {grade.%arg-1%} to "Resp"
+			if {grade.%arg-1%} is "Builder":
+				set {grade.%arg-1%} to "Builder"
+			stop
+command /listrank:
+	trigger:
+		if player is op:
+			send "&cAdmin&0, &cResp&0, &cMod&0, &cDev&0, &cStaff&0, &cBuilder&0, &cPartenaire&0, &cFriend&0, &cStar&0, &cElite&0, &cVIP&0, &cJoueur"
+on chat:
+	set {grade.%player%} to value "grade" get of "plugins/DATABASE/grades/%player%.yml"
+	set {mute.%player%} to value "mute" get of "plugins/DATABASE/grades/%player%.yml"
+	if {mute.%player%} is true:
+		send "&7Tu es mute, donc tu ne peux pas parler !" to player
+		cancel event
+		stop
+	cancel event
+	if {grade.%player%} is not set:
+		wait 1 tick
+		broadcast "&7%player% &8: &f%message%"
+		stop
+	if {grade.%player%} is "Joueur":
+		wait 1 tick
+		broadcast "&7%player% &8: &f%message%"
+		stop
+	if {grade.%player%} is "Mod":
+		wait 1 tick
+		broadcast "&2&lMOD %player% &8: &f%message%"
+		stop
+	if {grade.%player%} is "Staff":
+		wait 1 tick
+		broadcast "&3&lSTAFF %player% &8: &f%message%"
+		stop
+	if {grade.%player%} is "VIP":
+		wait 1 tick
+		broadcast "&e&lVIP %player% &8: &f%message%"
+		stop
+	if {grade.%player%} is "Admin":
+		wait 1 tick
+		broadcast "&c&lADMIN &c%player% &r&8: &f&l%message%"
+		stop
+	if {grade.%player%} is "Dev":
+		wait 1 tick
+		broadcast "&9&lDEV %player% &8: &f%message%"
+		stop
+	if {grade.%player%} is "Friend":
+		wait 1 tick
+		broadcast "&d&lFRIEND %player% &8: &f%message%"
+		stop
+	if {grade.%player%} is "Elite":
+		wait 1 tick
+		broadcast "&b&lELITE&r &b%player% &8: &f%message%"
+		stop
+	if {grade.%player%} is "Star":
+		wait 1 tick
+		broadcast "&f&lSTAR &f%player% &8: &f%message%"
+		stop
+	if {grade.%player%} is "Guest":
+		wait 1 tick
+		broadcast "&d&lGUEST &r&d%player% &8: &f&l%message%"
+		stop
+	if {grade.%player%} is "Resp":
+		wait 1 tick
+		broadcast "&6RESP %player% &8: &f%message%"
+		stop
+	if {grade.%player%} is "Builder":
+		wait 1 tick
+		broadcast "&9&lBUILDER &3%player% &8: &f%message%"
+		stop
+on first join:
+	if file "plugins/DATABASE/grades/%player%.yml" doesn't exists:
+		create file "plugins/DATABASE/grades/%player%.yml"
+		wait 3 ticks
+		set {grade.%player%} to "Joueur"
+		wf "grade: %{grade.%player%}%" to "plugins/DATABASE/grades/%player%.yml"
+	set {grade.%player%} to value "grade" get of "plugins/DATABASE/grades/%player%.yml"
+on join:
+	wait 3 ticks
+	set {grade.%player%} to value "grade" get of "plugins/DATABASE/grades/%player%.yml"
+	set {mute.%player%} to value "mute" get of "plugins/DATABASE/grades/%player%.yml"
+	if {grade.%player%} is not set:
+		set {grade.%player%} to "Joueur"
+	if file "plugins/DATABASE/grades/%player%.yml" doesn't exists:
+		create file "plugins/DATABASE/grades/%player%.yml"
+	wait 10 ticks
+	teleport player to {hub}
+	if {grade.%player%} is "Admin":
+		broadcast "&c&lADMIN &8&l| &c%player% &7a rejoint !"
+		execute console command "permuser %player% addgroup admin"
+	if {grade.%player%} is "Mod":
+		broadcast "&2&lMOD &8&l| &2%player% &7a rejoint !"
+		execute console command "permuser %player% addgroup mod"
+	if {grade.%player%} is "Staff":
+		broadcast "&3&lSTAFF &8&l| &3%player% &7a rejoint !"
+		execute console command "permuser %player% addgroup staff"
+	if {grade.%player%} is "Dev":
+		broadcast "&9&lDEV &8&l| &9%player% &7a rejoint !"
+		execute console command "permuser %player% addgroup dev"
+	if {grade.%player%} is "Friend":
+		broadcast "&d&lFRIEND &8&l| &d%player% &7a rejoint !"
+		execute console command "permuser %player% addgroup friend"
+	if {grade.%player%} is "Elite":
+		broadcast "&b&lELITE &8&l| &b%player% &7a rejoint !"
+		execute console command "permuser %player% addgroup elite"
+	if {grade.%player%} is "Star":
+		broadcast "&f&lSTAR &8&l| &f%player% &7a rejoint !"
+		execute console command "permuser %player% addgroup star"
+	if {grade.%player%} is "Guest":
+		broadcast "&d&lGUEST &8&l| &d%player% &7a rejoint !"
+		execute console command "permuser %player% addgroup guest"
+	if {grade.%player%} is "Resp":
+		broadcast "&6&lRESP &8&l| &6%player% &7a rejoint !"
+		execute console command "permuser %player% addgroup resp"
+	if {grade.%player%} is "Builder":
+		broadcast "&9&lBUILDER &8&l| &9%player% &7a rejoint !"
+		execute console command "permuser %player% addgroup builder"
+	if {grade.%player%} is "VIP":
+		execute console command "permuser %player% addgroup vip"
+	if {grade.%player%} is "Joueur":
+		execute console command "permuser %player% addgroup joueur"
+		

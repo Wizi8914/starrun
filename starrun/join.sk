@@ -1,0 +1,105 @@
+﻿on quit:
+    if {str::1::start} is "attente" or "starting":
+        if {listeuuid::game1::*} contain player's uuid:
+            broadcast "&7%player% &ea quitter (&b%{str::1::nbpl}%&e/&b%{str::1::nbplmax}%&e)!" to "lobbyjeux"
+            remove player from {liste::game1::*}
+            remove player's uuid from {listeuuid::game1::*}
+            add -1 to {str::1::nbpl}
+            set {decoreco.%player%} to false
+            clear {str::s::%player%}
+    
+    else if {str::1::start} is "start":
+        if {listeuuid::game1::*} contain player's uuid:
+            broadcast "&7%player% &ea quitter (&b%{str::1::nbpl}%&e/&b%{str::1::nbplmax}%&e)!" to "starrun"
+            remove player from {liste::game1::*}
+            remove player's uuid from {listeuuid::game1::*}
+            add -1 to {str::1::nbpl}
+            set {decoreco.%player%} to false
+            clear {str::s::%player%}
+
+    else if {str::1::start} is "buy" or "pvp":
+        if {listeuuid::game1::*} contain player's uuid:
+            broadcast "&7%player% &ea quitter (&b%{str::1::nbpl}%&e/&b%{str::1::nbplmax}%&e)!" to "pvp"
+            remove player from {liste::game1::*}
+            remove player's uuid from {listeuuid::game1::*}
+            clear {str::s::%player%}
+            add -1 to {str::1::nbpl}
+            set {decoreco.%player%} to false
+            clear {str::s::%player%}
+
+#===========================================================================================================
+
+on disconnect:
+    if {str::1::start} is "attente" or "starting":
+        if {listeuuid::game1::*} contain player's uuid:
+            broadcast "&7%player% &ea quitter (&b%{str::1::nbpl}%&e/&b%{str::1::nbplmax}%&e)!" to "lobbyjeux"
+            remove player from {liste::game1::*}
+            remove player's uuid from {listeuuid::game1::*}
+            add -1 to {str::1::nbpl}
+            set {decoreco.%player%} to false
+            clear {str::s::%player%}
+    
+    else if {str::1::start} is "start":
+        if {listeuuid::game1::*} contain player's uuid:
+            broadcast "&7%player% &ea quitter (&b%{str::1::nbpl}%&e/&b%{str::1::nbplmax}%&e)!" to "starrun"
+            remove player from {liste::game1::*}
+            remove player's uuid from {listeuuid::game1::*}
+            add -1 to {str::1::nbpl}
+            set {decoreco.%player%} to false
+            clear {str::s::%player%}
+
+    else if {str::1::start} is "buy" or "pvp":
+        if {listeuuid::game1::*} contain player's uuid:
+            broadcast "&7%player% &ea quitter (&b%{str::1::nbpl}%&e/&b%{str::1::nbplmax}%&e)!" to "pvp"
+            remove player from {liste::game1::*}
+            remove player's uuid from {listeuuid::game1::*}
+            clear {str::s::%player%}
+            add -1 to {str::1::nbpl}
+            set {decoreco.%player%} to false
+            clear {str::s::%player%}
+
+on join:
+    if {str::1::start} is "attente" or "starting":
+        if {decoreco.%player%} is false:
+            set {_skull} to player's skull
+            teleport player to {lobby}
+            clear player's inventories
+            make player run command "kit giver" as op
+            set slot 2 of player to ender chest named "&b&lCosmétique"
+            set slot 4 of player to compass named "&b&lMenu"
+            set slot 6 of player to {_skull} named "&b&lProfil"
+            set player tab name to "&7%player%"
+    
+    else if {str::1::start} is "start":
+        if {decoreco.%player%} is false:
+            add 1 to {str::1::nbpl}
+            add player to {liste::game1::*}
+            add player's uuid to {listeuuid::game1::*}
+            set {str::s::%player%} to "1"
+            set {decoreco.%player%} to true
+            wait 3 ticks
+            make console execute "spreadplayers 0 0 100 300 false %player%"
+            apply potion of fire resistance of tier 1 to player for 99999 seconds
+            apply potion of speed of tier 2 to player for 99999 seconds
+            set action bar of player to "&7%{str::1::minutes}% &8| &7%{str::1::secondes}%"
+            broadcast "&7%player% &ea rejoint (&b%{str::1::nbpl}%&e/&b%{str::1::nbplmax}%&e)!" to "starrun"
+    
+    else if {str::1::start} is "buy" or "pvp":
+        if {decoreco.%player%} is false:
+            set {_skull} to player's skull
+            teleport player to {lobby}
+            clear player's inventories
+            make player run command "kit giver" as op
+            set slot 2 of player to ender chest named "&b&lCosmétique"
+            set slot 4 of player to compass named "&b&lMenu"
+            set slot 6 of player to {_skull} named "&b&lProfil"
+            set player tab name to "&7%player%"
+            clear {str::s::%player%}
+
+command /99:
+    trigger:
+        if player is op:
+            if {str::1::start} is "attente" or "starting":
+                message "%{listeuuid::game1::*}%" to player
+                if {listeuuid::game1::*} contain player's uuid:
+                    broadcast "&7%player% &ea quitter (&b%{str::1::nbpl}%&e/&b%{str::1::nbplmax}%&e)!" to "lobbyjeux"

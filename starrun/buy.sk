@@ -1,0 +1,314 @@
+command /buy [<text>]:
+    trigger:
+        if arg 1 is "sword1":
+            if {str::1::points::%player%} >= 5000:
+                give 1 diamond sword of sharpness 1 and unbreaking 3 named "&b&lÉpée 1" to player
+                add -5000 to {str::1::points::%player%}
+                play raw sound "note.pling" at player with pitch 150 volume 100
+                set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+            else:
+                message "&cVous n'avez pas asser d'argent !" to player
+                play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+        if arg 1 is "sword2":
+            if {str::1::points::%player%} >= 5000:
+                give 1 diamond sword of sharpness 2 and unbreaking 3 named "&b&lÉpée 2" to player
+                add -5000 to {str::1::points::%player%}
+                play raw sound "note.pling" at player with pitch 150 volume 100
+                set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+            else:
+                message "&cVous n'avez pas asser d'argent !" to player
+                play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+        if arg 1 is "sword3":
+            if {str::1::points::%player%} >= 5000:
+                give 1 diamond sword of sharpness 3 and unbreaking 3 named "&b&lÉpée 3" to player
+                add -5000 to {str::1::points::%player%}
+                play raw sound "note.pling" at player with pitch 150 volume 100
+                set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+            else:
+                message "&cVous n'avez pas asser d'argent !" to player
+                play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+        if arg 1 is "sword4":
+            if {str::1::points::%player%} >= 5000:
+                give 1 diamond sword of sharpness 4 and unbreaking 3 named "&b&lÉpée 4" to player
+                add -5000 to {str::1::points::%player%}
+                play raw sound "note.pling" at player with pitch 150 volume 100
+                set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+            else:
+                message "&cVous n'avez pas asser d'argent !" to player
+                play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+        if arg 1 is "sword5":
+            if {str::1::points::%player%} >= 5000:
+                give 1 diamond sword of sharpness 5 and unbreaking 3 named "&b&lÉpée 5" to player
+                add -5000 to {str::1::points::%player%}
+                play raw sound "note.pling" at player with pitch 150 volume 100
+                set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+            else:
+                message "&cVous n'avez pas asser d'argent !" to player
+                play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+        if arg 1 is "gapple":
+            if {str::1::points::%player%} >= 2000:
+                give 1 golden apple to player
+                add -2000 to {str::1::points::%player%}
+                play raw sound "note.pling" at player with pitch 150 volume 100
+                set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+            else:
+                message "&cVous n'avez pas asser d'argent !" to player
+                play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+        if arg 1 is "rod":
+            if {str::1::points::%player%} >= 2000:
+                give 1 fishing rod of unbreaking 3 to player
+                add -2000 to {str::1::points::%player%}
+                play raw sound "note.pling" at player with pitch 150 volume 100
+                set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+            else:
+                message "&cVous n'avez pas asser d'argent !" to player
+                play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+        if arg 1 is "lava":
+            if {str::1::points::%player%} >= 2000:
+                give 1 lava bucket to player
+                add -2000 to {str::1::points::%player%}
+                play raw sound "note.pling" at player with pitch 150 volume 100
+                set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+            else:
+                message "&cVous n'avez pas asser d'argent !" to player
+                play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+        if arg 1 is "water":
+            if {str::1::points::%player%} >= 2000:
+                give 1 water bucket to player
+                add -2000 to {str::1::points::%player%}
+                play raw sound "note.pling" at player with pitch 150 volume 100
+                set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+            else:
+                message "&cVous n'avez pas asser d'argent !" to player
+                play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+        if arg 1 is "healsplashII":
+            if {str::1::points::%player%} >= 2000:
+                give 1 373:16421 to player
+                add -2000 to {str::1::points::%player%}
+                play raw sound "note.pling" at player with pitch 150 volume 100
+                set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+            else:
+                message "&cVous n'avez pas asser d'argent !" to player
+                play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+        if arg 1 is "healsplashI":
+            if {str::1::points::%player%} >= 2000:
+                give 1 373:16389 to player
+                add -2000 to {str::1::points::%player%}
+                play raw sound "note.pling" at player with pitch 150 volume 100
+                set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+            else:
+                message "&cVous n'avez pas asser d'argent !" to player
+                play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+        if arg 1 is "chestplate1":
+            if {str::1::points::%player%} >= 2000:
+                give 1 diamond chestplate of unbreaking 3 named "&b&lPlastron 1" to player
+                add -2000 to {str::1::points::%player%}
+                play raw sound "note.pling" at player with pitch 150 volume 100
+                set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+            else:
+                message "&cVous n'avez pas asser d'argent !" to player
+                play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+        if arg 1 is "helmet1":
+            if {str::1::points::%player%} >= 2000:
+                give 1 diamond helmet of unbreaking 3 named "&b&lCasque 1" to player
+                add -2000 to {str::1::points::%player%}
+                play raw sound "note.pling" at player with pitch 150 volume 100
+                set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+            else:
+                message "&cVous n'avez pas asser d'argent !" to player
+                play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+        if arg 1 is "leggings1":
+            if {str::1::points::%player%} >= 2000:
+                give 1 diamond leggings of unbreaking 3 named "&b&lJambière 1" to player
+                add -2000 to {str::1::points::%player%}
+                play raw sound "note.pling" at player with pitch 150 volume 100
+                set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+            else:
+                message "&cVous n'avez pas asser d'argent !" to player
+                play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+        if arg 1 is "boots1":
+            if {str::1::points::%player%} >= 2000:
+                give 1 diamond boots of unbreaking 3 named "&b&lBottes 1" to player
+                add -2000 to {str::1::points::%player%}
+                play raw sound "note.pling" at player with pitch 150 volume 100
+                set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+            else:
+                message "&cVous n'avez pas asser d'argent !" to player
+                play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+        if arg 1 is "chestplate2":
+            if {str::1::points::%player%} >= 2000:
+                give 1 diamond chestplate of unbreaking 3 named "&b&lPlastron 2" to player
+                add -2000 to {str::1::points::%player%}
+                play raw sound "note.pling" at player with pitch 150 volume 100
+                set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+            else:
+                message "&cVous n'avez pas asser d'argent !" to player
+                play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+        if arg 1 is "helmet2":
+            if {str::1::points::%player%} >= 2000:
+                give 1 diamond helmet of unbreaking 3 named "&b&lCasque 2" to player
+                add -2000 to {str::1::points::%player%}
+                play raw sound "note.pling" at player with pitch 150 volume 100
+                set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+            else:
+                message "&cVous n'avez pas asser d'argent !" to player
+                play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+        if arg 1 is "leggings2":
+            if {str::1::points::%player%} >= 2000:
+                give 1 diamond leggings of unbreaking 3 named "&b&lJambière 2" to player
+                add -2000 to {str::1::points::%player%}
+                play raw sound "note.pling" at player with pitch 150 volume 100
+                set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+            else:
+                message "&cVous n'avez pas asser d'argent !" to player
+                play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+        if arg 1 is "boots2":
+            if {str::1::points::%player%} >= 2000:
+                give 1 diamond boots of unbreaking 3 named "&b&lBottes 2" to player
+                add -2000 to {str::1::points::%player%}
+                play raw sound "note.pling" at player with pitch 150 volume 100
+                set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+            else:
+                message "&cVous n'avez pas asser d'argent !" to player
+                play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+        if arg 1 is "chestplate3":
+            if {str::1::points::%player%} >= 2000:
+                give 1 diamond chestplate of protection 4 and unbreaking 3 named "&b&lPlastron 3" to player
+                add -2000 to {str::1::points::%player%}
+                play raw sound "note.pling" at player with pitch 150 volume 100
+                set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+            else:
+                message "&cVous n'avez pas asser d'argent !" to player
+                play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+        if arg 1 is "helmet3":
+            if {str::1::points::%player%} >= 2000:
+                give 1 diamond helmet of protection 4 and unbreaking 3 named "&b&lCasque 3" to player
+                add -2000 to {str::1::points::%player%}
+                play raw sound "note.pling" at player with pitch 150 volume 100
+                set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+            else:
+                message "&cVous n'avez pas asser d'argent !" to player
+                play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+        if arg 1 is "leggings3":
+            if {str::1::points::%player%} >= 2000:
+                give 1 diamond leggings of protection 4 and unbreaking 3 named "&b&lJambière 3" to player
+                add -2000 to {str::1::points::%player%}
+                play raw sound "note.pling" at player with pitch 150 volume 100
+                set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+            else:
+                message "&cVous n'avez pas asser d'argent !" to player
+                play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+        if arg 1 is "boots3":
+            if {str::1::points::%player%} >= 2000:
+                give 1 diamond boots of protection 4 and unbreaking 3 named "&b&lBottes 3" to player
+                add -2000 to {str::1::points::%player%}
+                play raw sound "note.pling" at player with pitch 150 volume 100
+                set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+            else:
+                message "&cVous n'avez pas asser d'argent !" to player
+                play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+        if arg 1 is "bow1":
+            if {str::1::points::%player%} >= 2000:
+                give 1 bow of unbreaking 3 named "&b&lArc 1" to player
+                add -2000 to {str::1::points::%player%}
+                play raw sound "note.pling" at player with pitch 150 volume 100
+                set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+            else:
+                message "&cVous n'avez pas asser d'argent !" to player
+                play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+        if arg 1 is "bow2":
+            if {str::1::points::%player%} >= 2000:
+                give 1 bow of unbreaking 3 named "&b&lArc 2" to player
+                add -2000 to {str::1::points::%player%}
+                play raw sound "note.pling" at player with pitch 150 volume 100
+                set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+            else:
+                message "&cVous n'avez pas asser d'argent !" to player
+                play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+        if arg 1 is "bow3":
+            if {str::1::points::%player%} >= 2000:
+                give 1 bow of unbreaking 3 named "&b&lArc 3" to player
+                add -2000 to {str::1::points::%player%}
+                play raw sound "note.pling" at player with pitch 150 volume 100
+                set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+            else:
+                message "&cVous n'avez pas asser d'argent !" to player
+                play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+        if arg 1 is "bow4":
+            if {str::1::points::%player%} >= 2000:
+                give 1 bow of unbreaking 3 named "&b&lArc 4" to player
+                add -2000 to {str::1::points::%player%}
+                play raw sound "note.pling" at player with pitch 150 volume 100
+                set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+            else:
+                message "&cVous n'avez pas asser d'argent !" to player
+                play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+        if arg 1 is "bow5":
+            if {str::1::points::%player%} >= 2000:
+                give 1 bow of unbreaking 3 named "&b&lArc 5" to player
+                add -2000 to {str::1::points::%player%}
+                play raw sound "note.pling" at player with pitch 150 volume 100
+                set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+            else:
+                message "&cVous n'avez pas asser d'argent !" to player
+                play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+        if arg 1 is "cobblestone":
+            if {str::1::points::%player%} >= 2000:
+                give 16 cobblestone to player
+                add -2000 to {str::1::points::%player%}
+                play raw sound "note.pling" at player with pitch 150 volume 100
+                set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+            else:
+                message "&cVous n'avez pas asser d'argent !" to player
+                play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+        if arg 1 is "arrow":
+            if {str::1::points::%player%} >= 2000:
+                give 8 arrow to player
+                add -2000 to {str::1::points::%player%}
+                play raw sound "note.pling" at player with pitch 150 volume 100
+                set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+            else:
+                message "&cVous n'avez pas asser d'argent !" to player
+                play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+        if arg 1 is "pearl":
+            if {str::1::points::%player%} >= 2000:
+                give 1 ender pearl to player
+                add -2000 to {str::1::points::%player%}
+                play raw sound "note.pling" at player with pitch 150 volume 100
+                set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+            else:
+                message "&cVous n'avez pas asser d'argent !" to player
+                play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+
+        

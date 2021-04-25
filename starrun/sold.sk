@@ -1,0 +1,704 @@
+command /sold [<text>]:
+	trigger:
+		if arg 1 is "diamond":
+			set {_diamond} to 0
+			loop all items in player's inventory:
+				if loop-item is diamond:
+					set {_diamond} to number of loop-item of player's inventory
+					add {_diamond} to {statitem.%player%}
+			remove all diamonds from player's inventory
+			if {_diamond} != 0:
+				set {_diamond} to {_diamond}*1500
+				add {_diamond} to {statpoint.%player%}
+				add {_diamond} to {str::1::points::%player%}
+				send "&f&lVous avez gagné &b&l%{_diamond}% &f&lPoints" to player
+				play raw sound "note.pling" at player with pitch 150 volume 100
+				set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+			else:
+				send "&cVous n'avez pas de diamant !" to player
+				play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+		if arg 1 is "gold":
+			set {_gold} to 0
+			loop all items in player's inventory:
+				if loop-item is gold ingot:
+					set {_gold} to number of loop-item of player's inventory
+					add {_gold} to {statitem.%player%}
+			remove all gold ingot from player's inventory
+			if {_gold} != 0:
+				set {_gold} to {_gold}*800
+				add {_gold} to {statpoint.%player%}
+				add {_gold} to {str::1::points::%player%}
+				send "&f&lVous avez gagné &b&l%{_gold}% &f&lPoints" to player
+				play raw sound "note.pling" at player with pitch 150 volume 100
+				set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+			else:
+				send "&cVous n'avez pas d'or !" to player
+				play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+		if arg 1 is "emerald":
+			set {_emerald} to 0
+			loop all items in player's inventory:
+				if loop-item is emerald:
+					set {_emerald} to number of loop-item of player's inventory
+					add {_emerald} to {statitem.%player%}
+			remove all emerald from player's inventory
+			if {_emerald} != 0:
+				set {_emerald} to {_emerald}*2200
+				add {_emerald} to {statpoint.%player%}
+				add {_emerald} to {str::1::points::%player%}
+				send "&f&lVous avez gagné &b&l%{_emerald}% &f&lPoints" to player
+				play raw sound "note.pling" at player with pitch 150 volume 100
+				set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+			else:
+				send "&cVous n'avez pas d'emeraude !" to player
+				play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+		if arg 1 is "iron":
+			set {_iron} to 0
+			loop all items in player's inventory:
+				if loop-item is iron ingot:
+					set {_iron} to number of loop-item of player's inventory
+					add {_iron} to {statitem.%player%}
+			remove all iron ingot from player's inventory
+			if {_iron} != 0:
+				set {_iron} to {_iron}*150
+				add {_iron} to {statpoint.%player%}
+				add {_iron} to {str::1::points::%player%}
+				send "&f&lVous avez gagné &b&l%{_iron}% &f&lPoints" to player
+				play raw sound "note.pling" at player with pitch 150 volume 100
+				set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+			else:
+				send "&cVous n'avez pas de fer !" to player
+				play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+		if arg 1 is "lapis":
+			set {_lapis} to 0
+			loop all items in player's inventory:
+				if loop-item is lapis lazuli:
+					set {_lapis} to number of loop-item of player's inventory
+					add {_lapis} to {statitem.%player%}
+			remove all lapis lazuli from player's inventory
+			if {_lapis} != 0:
+				set {_lapis} to {_lapis}*200
+				add {_lapis} to {statpoint.%player%}
+				add {_lapis} to {str::1::points::%player%}
+				send "&f&lVous avez gagné &b&l%{_lapis}% &f&lPoints" to player
+				play raw sound "note.pling" at player with pitch 150 volume 100
+				set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+			else:
+				send "&cVous n'avez pas de lapis lazuli !" to player
+				play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+		if arg 1 is "redstone":
+			set {_redstone} to 0
+			loop all items in player's inventory:
+				if loop-item is redstone:
+					set {_redstone} to number of loop-item of player's inventory
+					add {_redstone} to {statitem.%player%}
+			remove all redstone from player's inventory
+			if {_redstone} != 0:
+				set {_redstone} to {_redstone}*50
+				add {_redstone} to {statpoint.%player%}
+				add {_redstone} to {str::1::points::%player%}
+				send "&f&lVous avez gagné &b&l%{_redstone}% &f&lPoints" to player
+				play raw sound "note.pling" at player with pitch 150 volume 100
+				set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+			else:
+				send "&cVous n'avez pas de redstone !" to player
+				play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+		if arg 1 is "coal":
+			set {_coal} to 0
+			loop all items in player's inventory:
+				if loop-item is coal:
+					set {_coal} to number of loop-item of player's inventory
+					add {_coal} to {statitem.%player%}
+			remove all coal from player's inventory
+			if {_coal} != 0:
+				set {_coal} to {_coal}*50
+				add {_coal} to {statpoint.%player%}
+				add {_coal} to {str::1::points::%player%}
+				send "&f&lVous avez gagné &b&l%{_coal}% &f&lPoints" to player
+				play raw sound "note.pling" at player with pitch 150 volume 100
+				set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+			else:
+				send "&cVous n'avez pas de charbon !" to player
+				play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+		if arg 1 is "oak":
+			set {_oak} to 0
+			loop all items in player's inventory:
+				if loop-item is oak wood:
+					set {_oak} to number of loop-item of player's inventory
+					add {_oak} to {statitem.%player%}
+			remove all oak wood from player's inventory
+			if {_oak} != 0:
+				set {_oak} to {_oak}*20
+				add {_oak} to {statpoint.%player%}
+				add {_oak} to {str::1::points::%player%}
+				send "&f&lVous avez gagné &b&l%{_oak}% &f&lPoints" to player
+				play raw sound "note.pling" at player with pitch 150 volume 100
+				set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+			else:
+				send "&cVous n'avez pas de Bois de Chêne !" to player
+				play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+		if arg 1 is "birch":
+			set {_birch} to 0
+			loop all items in player's inventory:
+				if loop-item is birch wood:
+					set {_birch} to number of loop-item of player's inventory
+					add {_birch} to {statitem.%player%}
+			remove all birch wood from player's inventory
+			if {_birch} != 0:
+				set {_birch} to {_birch}*20
+				add {_birch} to {statpoint.%player%}
+				add {_birch} to {str::1::points::%player%}
+				send "&f&lVous avez gagné &b&l%{_birch}% &f&lPoints" to player
+				play raw sound "note.pling" at player with pitch 150 volume 100
+				set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+			else:
+				send "&cVous n'avez pas de Bois de Bouleau !" to player
+				play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+		if arg 1 is "spruce":
+			set {_spruce} to 0
+			loop all items in player's inventory:
+				if loop-item is spruce wood:
+					set {_spruce} to number of loop-item of player's inventory
+					add {_spruce} to {statitem.%player%}
+			remove all spruce wood from player's inventory
+			if {_spruce} != 0:
+				set {_spruce} to {_spruce}*20
+				add {_spruce} to {statpoint.%player%}
+				add {_spruce} to {str::1::points::%player%}
+				send "&f&lVous avez gagné &b&l%{_spruce}% &f&lPoints" to player
+				play raw sound "note.pling" at player with pitch 150 volume 100
+				set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+			else:
+				send "&cVous n'avez pas de Bois de Sapin !" to player
+				play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+		if arg 1 is "acacia":
+			set {_acacia} to 0
+			loop all items in player's inventory:
+				if loop-item is acacia wood:
+					set {_acacia} to number of loop-item of player's inventory
+					add {_acacia} to {statitem.%player%}
+			remove all acacia wood from player's inventory
+			if {_acacia} != 0:
+				set {_acacia} to {_acacia}*20
+				add {_acacia} to {statpoint.%player%}
+				add {_acacia} to {str::1::points::%player%}
+				send "&f&lVous avez gagné &b&l%{_acacia}% &f&lPoints" to player
+				play raw sound "note.pling" at player with pitch 150 volume 100
+				set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+			else:
+				send "&cVous n'avez pas de Bois d'acacia !" to player
+				play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+		if arg 1 is "jungle":
+			set {_jungle} to 0
+			loop all items in player's inventory:
+				if loop-item is jungle wood:
+					set {_jungle} to number of loop-item of player's inventory
+					add {_jungle} to {statitem.%player%}
+			remove all jungle wood from player's inventory
+			if {_jungle} != 0:
+				set {_jungle} to {_jungle}*20
+				add {_jungle} to {statpoint.%player%}
+				add {_jungle} to {str::1::points::%player%}
+				send "&f&lVous avez gagné &b&l%{_jungle}% &f&lPoints" to player
+				play raw sound "note.pling" at player with pitch 150 volume 100
+				set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+			else:
+				send "&cVous n'avez pas de Bois d'acajou !" to player
+				play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+		if arg 1 is "dark":
+			set {_dark} to 0
+			loop all items in player's inventory:
+				if loop-item is dark oak wood:
+					set {_dark} to number of loop-item of player's inventory
+					add {_dark} to {statitem.%player%}
+			remove all dark oak wood from player's inventory
+			if {_dark} != 0:
+				set {_dark} to {_dark}*20
+				add {_dark} to {statpoint.%player%}
+				add {_dark} to {str::1::points::%player%}
+				send "&f&lVous avez gagné &b&l%{_dark}% &f&lPoints" to player
+				play raw sound "note.pling" at player with pitch 150 volume 100
+				set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+			else:
+				send "&cVous n'avez pas de Bois de Chêne Noir !" to player
+				play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+		if arg 1 is "string":
+			set {_string} to 0
+			loop all items in player's inventory:
+				if loop-item is string:
+					set {_string} to number of loop-item of player's inventory
+					add {_string} to {statitem.%player%}
+			remove all string from player's inventory
+			if {_string} != 0:
+				set {_string} to {_string}*40
+				add {_string} to {statpoint.%player%}
+				add {_string} to {str::1::points::%player%}
+				send "&f&lVous avez gagné &b&l%{_string}% &f&lPoints" to player
+				play raw sound "note.pling" at player with pitch 150 volume 100
+				set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+			else:
+				send "&cVous n'avez pas de Fil !" to player
+				play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+		if arg 1 is "pearl":
+			set {_pearl} to 0
+			loop all items in player's inventory:
+				if loop-item is ender pearl:
+					set {_pearl} to number of loop-item of player's inventory
+					add {_pearl} to {statitem.%player%}
+			remove all ender pearl from player's inventory
+			if {_pearl} != 0:
+				set {_pearl} to {_pearl}*1150
+				add {_pearl} to {statpoint.%player%}
+				add {_pearl} to {str::1::points::%player%}
+				send "&f&lVous avez gagné &b&l%{_pearl}% &f&lPoints" to player
+				play raw sound "note.pling" at player with pitch 150 volume 100
+				set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+			else:
+				send "&cVous n'avez pas de Ender Pearl !" to player
+				play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+		if arg 1 is "cream":
+			set {_cream} to 0
+			loop all items in player's inventory:
+				if loop-item is magma cream:
+					set {_cream} to number of loop-item of player's inventory
+					add {_cream} to {statitem.%player%}
+			remove all magma cream from player's inventory
+			if {_cream} != 0:
+				set {_cream} to {_cream}*900
+				add {_cream} to {statpoint.%player%}
+				add {_cream} to {str::1::points::%player%}
+				send "&f&lVous avez gagné &b&l%{_cream}% &f&lPoints" to player
+				play raw sound "note.pling" at player with pitch 150 volume 100
+				set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+			else:
+				send "&cVous n'avez pas de Creme De Magma !" to player
+				play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+		if arg 1 is "blaze":
+			set {_blaze} to 0
+			loop all items in player's inventory:
+				if loop-item is blaze rod:
+					set {_blaze} to number of loop-item of player's inventory
+					add {_blaze} to {statitem.%player%}
+			remove all blaze rod from player's inventory
+			if {_blaze} != 0:
+				set {_blaze} to {_blaze}*150
+				add {_blaze} to {statpoint.%player%}
+				add {_blaze} to {str::1::points::%player%}
+				send "&f&lVous avez gagné &b&l%{_blaze}% &f&lPoints" to player
+				play raw sound "note.pling" at player with pitch 150 volume 100
+				set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+			else:
+				send "&cVous n'avez pas de Baton de Blaze !" to player
+				play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+		if arg 1 is "ghast":
+			set {_ghast} to 0
+			loop all items in player's inventory:
+				if loop-item is ghast tear:
+					set {_ghast} to number of loop-item of player's inventory
+					add {_ghast} to {statitem.%player%}
+			remove all ghast tear from player's inventory
+			if {_ghast} != 0:
+				set {_ghast} to {_ghast}*2000
+				add {_ghast} to {statpoint.%player%}
+				add {_ghast} to {str::1::points::%player%}
+				send "&f&lVous avez gagné &b&l%{_ghast}% &f&lPoints" to player
+				play raw sound "note.pling" at player with pitch 150 volume 100
+				set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+			else:
+				send "&cVous n'avez pas de Larme de ghast !" to player
+				play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+		if arg 1 is "cuir":
+			set {_cuir} to 0
+			loop all items in player's inventory:
+				if loop-item is leather:
+					set {_cuir} to number of loop-item of player's inventory
+					add {_cuir} to {statitem.%player%}
+			remove all leather from player's inventory
+			if {_cuir} != 0:
+				set {_cuir} to {_cuir}*100
+				add {_cuir} to {statpoint.%player%}
+				add {_cuir} to {str::1::points::%player%}
+				send "&f&lVous avez gagné &b&l%{_cuir}% &f&lPoints" to player
+				play raw sound "note.pling" at player with pitch 150 volume 100
+				set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+			else:
+				send "&cVous n'avez pas de Cuir !" to player
+				play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+		if arg 1 is "plume":
+			set {_plume} to 0
+			loop all items in player's inventory:
+				if loop-item is feather:
+					set {_plume} to number of loop-item of player's inventory
+					add {_plume} to {statitem.%player%}
+			remove all feather from player's inventory
+			if {_plume} != 0:
+				set {_plume} to {_plume}*80
+				add {_plume} to {statpoint.%player%}
+				add {_plume} to {str::1::points::%player%}
+				send "&f&lVous avez gagné &b&l%{_plume}% &f&lPoints" to player
+				play raw sound "note.pling" at player with pitch 150 volume 100
+				set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+			else:
+				send "&cVous n'avez pas de Plume !" to player
+				play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+		if arg 1 is "netherwart":
+			set {_neterwart} to 0
+			loop all items in player's inventory:
+				if loop-item is dark oak wood:
+					set {_netherwart} to number of loop-item of player's inventory
+					add {_neterwart} to {statitem.%player%}
+			remove all dark oak wood from player's inventory
+			if {_neterwart} != 0:
+				set {_neterwart} to {_neterwart}*50
+				add {_neterwart} to {statpoint.%player%}
+				add {_netherwart} to {str::1::points::%player%}
+				send "&f&lVous avez gagné &b&l%{_netherwart}% &f&lPoints" to player
+				play raw sound "note.pling" at player with pitch 150 volume 100
+				set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+			else:
+				send "&cVous n'avez pas de Verrues Du Nether !" to player
+				play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+		if arg 1 is "sugarcane":
+			set {_sugarcane} to 0
+			loop all items in player's inventory:
+				if loop-item is sugarcane:
+					set {_sugarcane} to number of loop-item of player's inventory
+					add {_sugarcane} to {statitem.%player%}
+			remove all sugarcane from player's inventory
+			if {_sugarcane} != 0:
+				set {_sugarcane} to {_sugarcane}*60
+				add {_sugarcane} to {statpoint.%player%}
+				add {_sugarcane} to {str::1::points::%player%}
+				send "&f&lVous avez gagné &b&l%{_sugarcane}% &f&lPoints" to player
+				play raw sound "note.pling" at player with pitch 150 volume 100
+				set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+			else:
+				send "&cVous n'avez pas de Canne a Sucre !" to player
+				play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+		if arg 1 is "sponge":
+			set {_sponge} to 0
+			loop all items in player's inventory:
+				if loop-item is sponge:
+					set {_sponge} to number of loop-item of player's inventory
+					add {_sponge} to {statitem.%player%}
+			remove all sponge from player's inventory
+			if {_sponge} != 0:
+				set {_sponge} to {_sponge}*2500
+				add {_sponge} to {statpoint.%player%}
+				add {_sponge} to {str::1::points::%player%}
+				send "&f&lVous avez gagné &b&l%{_sponge}% &f&lPoints" to player
+				play raw sound "note.pling" at player with pitch 150 volume 100
+				set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+			else:
+				send "&cVous n'avez pas d'éponge !" to player
+				play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+		if arg 1 is "tnt":
+			set {_tnt} to 0
+			loop all items in player's inventory:
+				if loop-item is tnt:
+					set {_tnt} to number of loop-item of player's inventory
+					add {_tnt} to {statitem.%player%}
+			remove all tnt from player's inventory
+			if {_tnt} != 0:
+				set {_tnt} to {_tnt}*1400
+				add {_tnt} to {statpoint.%player%}
+				add {_tnt} to {str::1::points::%player%}
+				send "&f&lVous avez gagné &b&l%{_tnt}% &f&lPoints" to player
+				play raw sound "note.pling" at player with pitch 150 volume 100
+				set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+			else:
+				send "&cVous n'avez pas de TNT !" to player
+				play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+		if arg 1 is "slimeblock":
+			set {_slimeblock} to 0
+			loop all items in player's inventory:
+				if loop-item is slime block:
+					set {_slimeblock} to number of loop-item of player's inventory
+					add {_slimeblock} to {statitem.%player%}
+			remove all slime block from player's inventory
+			if {_slimeblock} != 0:
+				set {_slimeblock} to {_slimeblock}*2700
+				add {_slimeblock} to {statpoint.%player%}
+				add {_slimeblock} to {str::1::points::%player%}
+				send "&f&lVous avez gagné &b&l%{_slimeblock}% &f&lPoints" to player
+				play raw sound "note.pling" at player with pitch 150 volume 100
+				set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+			else:
+				send "&cVous n'avez pas de Block de slime !" to player
+				play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+		if arg 1 is "enchant":
+			set {_enchant} to 0
+			loop all items in player's inventory:
+				if loop-item is enchantment table:
+					set {_enchant} to number of loop-item of player's inventory
+					add {_enchant} to {statitem.%player%}
+			remove all enchantment table from player's inventory
+			if {_enchant} != 0:
+				set {_enchant} to {_enchant}*4500
+				add {_enchant} to {statpoint.%player%}
+				add {_enchant} to {str::1::points::%player%}
+				send "&f&lVous avez gagné &b&l%{_enchant}% &f&lPoints" to player
+				play raw sound "note.pling" at player with pitch 150 volume 100
+				set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+			else:
+				send "&cVous n'avez pas de Table D'enchantement !" to player
+				play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+		if arg 1 is "wool":
+			set {_wool} to 0
+			loop all items in player's inventory:
+				if loop-item is wool:
+					set {_wool} to number of loop-item of player's inventory
+					add {_wool} to {statitem.%player%}
+			remove all wool from player's inventory
+			if {_wool} != 0:
+				set {_wool} to {_wool}*20
+				add {_wool} to {statpoint.%player%}
+				add {_wool} to {str::1::points::%player%}
+				send "&f&lVous avez gagné &b&l%{_wool}% &f&lPoints" to player
+				play raw sound "note.pling" at player with pitch 150 volume 100
+				set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+			else:
+				send "&cVous n'avez pas de Laine !" to player
+				play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+		if arg 1 is "stonebrick":
+			set {_stonebrick} to 0
+			loop all items in player's inventory:
+				if loop-item is stone brick:
+					set {_stonebrick} to number of loop-item of player's inventory
+					add {_stonebrick} to {statitem.%player%}
+			remove all stone brick from player's inventory
+			if {_stonebrick} != 0:
+				set {_stonebrick} to {_stonebrick}*16
+				add {_stonebrick} to {statpoint.%player%}
+				add {_stonebrick} to {str::1::points::%player%}
+				send "&f&lVous avez gagné &b&l%{_stonebrick}% &f&lPoints" to player
+				play raw sound "note.pling" at player with pitch 150 volume 100
+				set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+			else:
+				send "&cVous n'avez pas de Stone Brick !" to player
+				play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+		if arg 1 is "brickblock":
+			set {_brickblock} to 0
+			loop all items in player's inventory:
+				if loop-item is brick:
+					set {_brickblock} to number of loop-item of player's inventory
+					add {_brickblock} to {statitem.%player%}
+			remove all brick from player's inventory
+			if {_brickblock} != 0:
+				set {_brickblock} to {_brickblock}*120
+				add {_brickblock} to {statpoint.%player%}
+				add {_brickblock} to {str::1::points::%player%}
+				send "&f&lVous avez gagné &b&l%{_brickblock}% &f&lPoints" to player
+				play raw sound "note.pling" at player with pitch 150 volume 100
+				set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+			else:
+				send "&cVous n'avez pas de Block de Brique !" to player
+				play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+		if arg 1 is "sand":
+			set {_sand} to 0
+			loop all items in player's inventory:
+				if loop-item is sand:
+					set {_sand} to number of loop-item of player's inventory
+					add {_sand} to {statitem.%player%}
+			remove all sand from player's inventory
+			if {_sand} != 0:
+				set {_sand} to {_sand}*10
+				add {_sand} to {statpoint.%player%}
+				add {_sand} to {str::1::points::%player%}
+				send "&f&lVous avez gagné &b&l%{_sand}% &f&lPoints" to player
+				play raw sound "note.pling" at player with pitch 150 volume 100
+				set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+			else:
+				send "&cVous n'avez pas de Sable !" to player
+				play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+		if arg 1 is "anvil":
+			set {_anvil} to 0
+			loop all items in player's inventory:
+				if loop-item is anvil:
+					set {_anvil} to number of loop-item of player's inventory
+					add {_anvil} to {statitem.%player%}
+			remove all anvil from player's inventory
+			if {_anvil} != 0:
+				set {_anvil} to {_anvil}*4800
+				add {_anvil} to {statpoint.%player%}
+				add {_anvil} to {str::1::points::%player%}
+				send "&f&lVous avez gagné &b&l%{_anvil}% &f&lPoints" to player
+				play raw sound "note.pling" at player with pitch 150 volume 100
+				set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+			else:
+				send "&cVous n'avez pas d'enclume !" to player
+				play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+		if arg 1 is "obsi":
+			set {_obsi} to 0
+			loop all items in player's inventory:
+				if loop-item is obsidian:
+					set {_obsi} to number of loop-item of player's inventory
+					add {_obsi} to {statitem.%player%}
+			remove all obsidian from player's inventory
+			if {_obsi} != 0:
+				set {_obsi} to {_obsi}*250
+				add {_obsi} to {statpoint.%player%}
+				add {_obsi} to {str::1::points::%player%}
+				send "&f&lVous avez gagné &b&l%{_obsi}% &f&lPoints" to player
+				play raw sound "note.pling" at player with pitch 150 volume 100
+				set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+			else:
+				send "&cVous n'avez pas d'obsidienne !" to player
+				play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+		if arg 1 is "hayblock":
+			set {_hayblock} to 0
+			loop all items in player's inventory:
+				if loop-item is hay block:
+					set {_hayblock} to number of loop-item of player's inventory
+					add {_hayblock} to {statitem.%player%}
+			remove all hay block from player's inventory
+			if {_hayblock} != 0:
+				set {_hayblock} to {_hayblock}*270
+				add {_hayblock} to {statpoint.%player%}
+				add {_hayblock} to {str::1::points::%player%}
+				send "&f&lVous avez gagné &b&l%{_hayblock}% &f&lPoints" to player
+				play raw sound "note.pling" at player with pitch 150 volume 100
+				set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+			else:
+				send "&cVous n'avez pas de Block de Paille !" to player
+				play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+		if arg 1 is "tetewiwi":
+			set {_tetewiwi} to 0
+			loop all items in player's inventory:
+				if loop-item is 397:1:
+					set {_tetewiwi} to number of loop-item of player's inventory
+					add {_tetewiwi} to {statitem.%player%}
+			remove all 397:1 from player's inventory
+			if {_tetewiwi} != 0:
+				set {_tetewiwi} to {_tetewiwi}*20000
+				add {_tetewiwi} to {statpoint.%player%}
+				add {_tetewiwi} to {str::1::points::%player%}
+				send "&f&lVous avez gagné &b&l%{_tetewiwi}% &f&lPoints" to player
+				play raw sound "note.pling" at player with pitch 150 volume 100
+				set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+			else:
+				send "&cVous n'avez pas de Tete de Wither !" to player
+				play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+		if arg 1 is "nametag":
+			set {_nametag} to 0
+			loop all items in player's inventory:
+				if loop-item is name tag:
+					set {_nametag} to number of loop-item of player's inventory
+					add {_nametag} to {statitem.%player%}
+			remove all name tag from player's inventory
+			if {_nametag} != 0:
+				set {_nametag} to {_nametag}*500
+				add {_nametag} to {statpoint.%player%}
+				add {_nametag} to {str::1::points::%player%}
+				send "&f&lVous avez gagné &b&l%{_nametag}% &f&lPoints" to player
+				play raw sound "note.pling" at player with pitch 150 volume 100
+				set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+			else:
+				send "&cVous n'avez pas de Name tag !" to player
+				play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+		if arg 1 is "inksac":
+			set {_inksac} to 0
+			loop all items in player's inventory:
+				if loop-item is ink sack:
+					set {_inksac} to number of loop-item of player's inventory
+					add {_inksac} to {statitem.%player%}
+			remove all ink sack from player's inventory
+			if {_inksac} != 0:
+				set {_inksac} to {_inksac}*200
+				add {_inksac} to {statpoint.%player%}
+				add {_inksac} to {str::1::points::%player%}
+				send "&f&lVous avez gagné &b&l%{_inksac}% &f&lPoints" to player
+				play raw sound "note.pling" at player with pitch 150 volume 100
+				set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+			else:
+				send "&cVous n'avez pas de poche d'encre !" to player
+				play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+		if arg 1 is "glass":
+			set {_glass} to 0
+			loop all items in player's inventory:
+				if loop-item is glass:
+					set {_glass} to number of loop-item of player's inventory
+					add {_glass} to {statitem.%player%}
+			remove all glass from player's inventory
+			if {_glass} != 0:
+				set {_glass} to {_glass}*30
+				add {_glass} to {statpoint.%player%}
+				add {_glass} to {str::1::points::%player%}
+				send "&f&lVous avez gagné &b&l%{_glass}% &f&lPoints" to player
+				play raw sound "note.pling" at player with pitch 150 volume 100
+				set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+			else:
+				send "&cVous n'avez pas de Verre !" to player
+				play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+		if arg 1 is "flint":
+			set {_flint} to 0
+			loop all items in player's inventory:
+				if loop-item is flint:
+					set {_flint} to number of loop-item of player's inventory
+					add {_flint} to {statitem.%player%}
+			remove all flint from player's inventory
+			if {_flint} != 0:
+				set {_flint} to {_flint}*30
+				add {_flint} to {statpoint.%player%}
+				add {_flint} to {str::1::points::%player%}
+				send "&f&lVous avez gagné &b&l%{_flint}% &f&lPoints" to player
+				play raw sound "note.pling" at player with pitch 150 volume 100
+				set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+			else:
+				send "&cVous n'avez pas de Silex !" to player
+				play raw sound "mob.villager.no" at player with pitch 1 volume 10
+
+		if arg 1 is "gapple":
+			set {_gapple} to 0
+			loop all items in player's inventory:
+				if loop-item is golden apple:
+					set {_gapple} to number of loop-item of player's inventory
+					add {_gapple} to {statitem.%player%}
+			remove all golden apple from player's inventory
+			if {_gapple} != 0:
+				set {_gapple} to {_gapple}*6000
+				add {_gapple} to {statpoint.%player%}
+				add {_gapple} to {str::1::points::%player%}
+				send "&f&lVous avez gagné &b&l%{_gapple}% &f&lPoints" to player
+				play raw sound "note.pling" at player with pitch 150 volume 100
+				set player tab name to "&7%player% &8&l| &b%{str::1::points::%player%}%"
+			else:
+				send "&cVous n'avez pas de Pomme d'or !" to player
+				play raw sound "mob.villager.no" at player with pitch 1 volume 10
+		

@@ -1,0 +1,134 @@
+on inventory click:
+	If name of clicked item is "&c&lLobby":
+		cancel event
+
+on place:
+    if {admin.%player%} is set:
+        stop
+    if world is "lobbyjeux":
+        cancel event
+on break:
+    if {admin.%player%} is set:
+        stop
+    if world is "lobbyjeux":
+        cancel event
+        
+on drop:
+    if world is "lobbyjeux":
+        cancel event
+on damage:
+    if victim is a player:
+        if world is "lobbyjeux":
+            cancel event
+
+on drop:
+    name of item is "&c&llobbyjeux"
+    cancel event
+
+
+command /multiclonage:
+	trigger:
+		if player is op:
+			send player title "&4M&cU&6L&eT&2I&aC&bL&3O&1N&9A&dG&5E" for 3 seconds
+			wait 3 tick
+			make player run command "str join 1" as op
+			wait 3 tick
+			make player run command "str join 1" as op
+			wait 3 tick
+			make player run command "str join 1" as op
+			wait 3 tick
+			make player run command "str join 1" as op
+			wait 3 tick
+			make player run command "str join 1" as op
+			wait 3 tick
+			make player run command "str join 1" as op
+			wait 3 tick
+			make player run command "str join 1" as op
+			wait 3 tick
+			make player run command "str join 1" as op
+			wait 3 tick
+			make player run command "str join 1" as op
+
+#=========================================SCOREBOARD============================================
+
+every 3 seconds:
+    edit score id "onlinejeux" to "&8&l> &fJoueurs &l&7: &b%{str::1::nbpl}%&7/&b16" and 3
+    
+every 7 seconds:
+	loop all players in world "lobbyjeux":
+		wait a tick
+		edit score id "iplobbyjeux.%loop-player%" to "&7Play.GalaStar.fr" and 1
+		wait 3 ticks
+		edit score id "iplobbyjeux.%loop-player%" to "&3P&7lay.GalaStar.fr" and 1
+		wait 3 ticks
+		edit score id "iplobbyjeux.%loop-player%" to "&bP&3l&7ay.GalaStar.fr" and 1
+		wait 3 ticks
+		edit score id "iplobbyjeux.%loop-player%" to "&3P&bl&3a&7y.GalaStar.fr" and 1
+		wait 3 ticks
+		edit score id "iplobbyjeux.%loop-player%" to "&7P&3l&ba&3y&7.GalaStar.fr" and 1
+		wait 3 ticks
+		edit score id "iplobbyjeux.%loop-player%" to "&7Pl&3a&by&3.&7GalaStar.fr" and 1
+		wait 3 ticks
+		edit score id "iplobbyjeux.%loop-player%" to "&7Pla&3y&b.&3G&7alaStar.fr" and 1
+		wait 3 ticks
+		edit score id "iplobbyjeux.%loop-player%" to "&7Play&3.&bG&3a&7laStar.fr" and 1
+		wait 3 ticks
+		edit score id "iplobbyjeux.%loop-player%" to "&7Play.&3G&ba&3l&7aStar.fr" and 1
+		wait 3 ticks
+		edit score id "iplobbyjeux.%loop-player%" to "&7Play.G&3a&bl&3a&7Star.fr" and 1
+		wait 3 ticks
+		edit score id "iplobbyjeux.%loop-player%" to "&7Play.Ga&3l&ba&3S&7tar.fr" and 1
+		wait 3 ticks
+		edit score id "iplobbyjeux.%loop-player%" to "&7Play.Gal&3a&bS&3t&7ar.fr" and 1
+		wait 3 ticks
+		edit score id "iplobbyjeux.%loop-player%" to "&7Play.Gala&3S&bt&3a&7r.fr" and 1
+		wait 3 ticks
+		edit score id "iplobbyjeux.%loop-player%" to "&7Play.GalaS&3t&ba&3r&7.fr" and 1
+		wait 3 ticks
+		edit score id "iplobbyjeux.%loop-player%" to "&7Play.GalaSt&3a&br&3.&7fr" and 1
+		wait 3 ticks
+		edit score id "iplobbyjeux.%loop-player%" to "&7Play.GalaSta&3r&b.&3f&7r" and 1
+		wait 3 ticks
+		edit score id "iplobbyjeux.%loop-player%" to "&7Play.GalaStar&3.&bf&3r" and 1
+		wait 3 ticks
+		edit score id "iplobbyjeux.%loop-player%" to "&7Play.GalaStar.&3f&br" and 1
+		wait 3 ticks
+		edit score id "iplobbyjeux.%loop-player%" to "&7Play.GalaStar.f&3r" and 1
+		wait 1 ticks
+		edit score id "iplobbyjeux.%loop-player%" to "&7Play.GalaStar.fr" and 1
+
+on join:
+    wait 10 ticks
+    if player is in world "lobbyjeux":
+        wait 3 ticks
+        wipe player's sidebar
+        wait 3 ticks
+        set name of sidebar of player to "&7&l< &b&lStar&f&lRun &7&l>"
+        set score "&8    " in sidebar of player to 6
+        set score "&8&l> &b%player%" in sidebar of player to 5
+        set score "    " in sidebar of player to 4
+        set id based score "&8&l> &fJoueurs &l&7: &b%{str::1::nbpl}%&7/&b16" in sidebar of player to 3 with id "onlinejeux"
+        set score "&9     " in sidebar of player to 2
+        set id based score "&7Play.GalaStar.fr" in sidebar of player to 1 with id "iplobbyjeux.%player%"
+        stop
+
+on world change:
+    wait 10 ticks
+    if player is in world "lobbyjeux":
+        wait 3 ticks
+        wipe player's sidebar
+        wait 3 ticks
+        set name of sidebar of player to "&7&l< &b&lStar&f&lRun &7&l>"
+        set score "&8    " in sidebar of player to 6
+        set score "&8&l> &b%player%" in sidebar of player to 5
+        set score "    " in sidebar of player to 4
+        set id based score "&8&l> &fJoueurs &l&7: &b%{str::1::nbpl}%&7/&b16" in sidebar of player to 3 with id "onlinejeux"
+        set score "&9     " in sidebar of player to 2
+        set id based score "&7Play.GalaStar.fr" in sidebar of player to 1 with id "iplobbyjeux.%player%"
+        stop
+
+
+command /11:
+	trigger:
+		set name of sidebar of player to "&7&l< &b&lStar&f&lRun &7&l>"
+		set score "&8    " in sidebar of player to 0

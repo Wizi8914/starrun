@@ -1,0 +1,29 @@
+command /kit [<text>] [<text>]:
+	trigger:
+		if player is op:
+			if arg 1 is "save":
+				set {casque} to helmet of player # Sauvegarde le casque
+				set {plastron} to chestplate of player # Sauvegarde le plastron
+				set {pantalon} to leggings of player # Sauvegarde le pantalon
+				set {bottes} to boots of player # Sauvegarde les bottes
+				set {inventaire} to serialized contents of player's inventory
+				send "&b&lGala&f&lStar &7| &eInventaire sauvegarder." to player
+			if arg 1 is "give":
+				set helmet of player to {casque} # Restaure le casque
+				set chestplate of player to {plastron} # Restaure le plastron
+				set leggings of player to {pantalon} # Restaure les pantalons
+				set boots of player to {bottes} # Restaure les bottes
+				set player's inventory's serialized contents to {inventaire}
+			if arg 1 is "saver":
+				set {casquer} to helmet of player # Sauvegarde le casque
+				set {plastronr} to chestplate of player # Sauvegarde le plastron
+				set {pantalonr} to leggings of player # Sauvegarde le pantalon
+				set {bottesr} to boots of player # Sauvegarde les bottes
+				set {inventairer} to serialized contents of player's inventory
+				send "&b&lGala&f&lStar &7| &eInventaire sauvegarder." to player
+			if arg 1 is "giver":
+				set helmet of player to {casquer} # Restaure le casque
+				set chestplate of player to {plastronr} # Restaure le plastron
+				set leggings of player to {pantalonr} # Restaure les pantalons
+				set boots of player to {bottesr} # Restaure les bottes
+				set player's inventory's serialized contents to {inventairer}

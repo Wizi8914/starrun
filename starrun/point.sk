@@ -1,0 +1,32 @@
+command /point [<text>] [<player>] [<number>]:
+	trigger:
+		if player is op:
+			if arg 1 is not set:
+				if player has permission "point.admin":
+					message "                 &7< &b&lGala&f&lStar &7>"
+					message "&b/point give <playername> <quantity> &fGive des point a un joueur"
+					message "&b/point reset <playername> &fReset les point d'un joueur."
+					message "&b/point remove <playername> <quantity> &fEnlève les point d'un joueur."
+					stop
+				
+			else if arg 1 is "give":
+				if player has permission "point.admin":
+					add number arg to {str::1::points::%arg 2%}
+					message "&b&lGala&f&lstar &7Tu as donner &b%number arg% &7point(s) a &b%arg-2%"
+
+			else if arg 1 is "reset":
+				if player has permission "point.admin":
+					if player arg is set:
+						set {str::1::points::%player%} to 0
+						message "&b&lGala&f&lstar &7Tu as reset les point de &b%arg-2%"
+			
+			else if arg 1 is "remove":
+				if player has permission "point.admin":
+					if arg 2 is set:
+						if number arg is set:
+							if {str::1::points::%arg 2%} is less than number arg:
+								message "&cErreur, &c%arg 2% n'as pas assez de point !"
+								stop
+							else:
+								remove number arg from {str::1::points::%arg 2%}
+								message "&b&lGala&f&lstar &7Tu as bien retiré &b%arg 3% &7point à &b%arg 2%"

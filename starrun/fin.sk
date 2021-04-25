@@ -1,0 +1,96 @@
+every 1 second:
+	if {str::1::start} is "start":
+		add -1 to {str::1::secondes}
+		if {str::1::secondes} is equal to 0:
+			set {str::1::secondes} to 59
+			add -1 to {str::1::minutes}
+		if {str::1::minutes} is equal to 0:
+			if {str::1::secondes} is equal to 0 or 1 or 2:
+				if {toggle.min} is not set:
+					set {toggle.min} to true
+					clear {str::1::secondes}
+					clear {str::1::minutes}
+					add 0 to {str::1::secondes}
+					add 0 to {str::1::minutes}
+					set {str::1::start} to "attente"
+					make console execute "/top"
+					loop {liste::game1::*}:
+						set {str::1::start} to "buy"
+						disable PvP in "starrun"
+						make loop-value run command "/kit giver" as op
+						set {str::1::nbplmax} to 16
+						set {prestart.1} to false
+						teleport loop-value to {lobbyarena}
+						remove all effects from loop-value
+						disable pvp in "pvp"
+						set slot 8 of loop-value to nether star with name "&b&lShop PVP"
+					make console execute "/§pvpphase1"
+		loop {liste::game1::*}:
+			set action bar of loop-value to "&7%{str::1::minutes}% &8| &7%{str::1::secondes}%"
+command /top:
+	trigger:
+		if command sender is console:
+			loop {str::1::points::*}:
+				add 1 to {_size}
+				if {_low.to.high.list::%loop-value%} is not set:
+					set {_low.to.high.list::%loop-value%} to loop-index
+				else:
+					set {_n} to 0
+					loop {_size} times:
+						set {_n} to {_n}+1
+						{_low.to.high.list::%loop-value-1%.%{_n}%} is not set
+						set {_low.to.high.list::%loop-value-1%.%{_n}%} to loop-index
+						stop loop
+			wait 1 tick
+			set {_n} to size of {_low.to.high.list::*}
+			loop {_low.to.high.list::*}:
+				set {_high.to.low.list::%{_n}%} to loop-value
+				set {_n} to {_n}-1
+			wait 1 tick
+			broadcast "&7&m-------&r&b&lGala&f&lStar&r&7&m-------"
+			broadcast " "
+			broadcast "         &6&lClassement Point  "
+			broadcast " "
+			loop {_high.to.low.list::*}:
+				add 1 to {_result}
+				broadcast "&9&l%{_result}% &r&f%loop-value%&8: &b&l%{str::1::points::%loop-value%}% point(s)"
+				if {_result} is 1:
+					add 1000 to {coins.%loop-value%}
+				if {_result} is 3:
+					broadcast " "
+					stop loop
+			broadcast "&7&m--------------------"
+
+command /topkill:
+	trigger:
+		if command sender is console:
+			loop {str::1::kill::*}:
+				add 1 to {_size}
+				if {_low.to.high.list::%loop-value%} is not set:
+					set {_low.to.high.list::%loop-value%} to loop-index
+				else:
+					set {_n} to 0
+					loop {_size} times:
+						set {_n} to {_n}+1
+						{_low.to.high.list::%loop-value-1%.%{_n}%} is not set
+						set {_low.to.high.list::%loop-value-1%.%{_n}%} to loop-index
+						stop loop
+			wait 1 tick
+			set {_n} to size of {_low.to.high.list::*}
+			loop {_low.to.high.list::*}:
+				set {_high.to.low.list::%{_n}%} to loop-value
+				set {_n} to {_n}-1
+			wait 1 tick
+			broadcast "&7&m-------&r&b&lGala&f&lStar&r&7&m-------"
+			broadcast " "
+			broadcast "         &6&lTOP KILL   "
+			broadcast " "
+			loop {_high.to.low.list::*}:
+				add 1 to {_result}
+				broadcast "&9&l%{_result}% &r&f%loop-value%&8: &b&l%{str::1::kill::%loop-value%}% Kill(s)"
+				if {_result} is 1:
+					add 1000 to {coins.%loop-value%}
+				if {_result} is 3:
+					broadcast " "
+					stop loop
+			broadcast "&7&m--------------------"

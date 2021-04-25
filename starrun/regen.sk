@@ -1,0 +1,32 @@
+command /regenmap:
+	permission: gala.admin
+	trigger:
+		message "&cReset..." to player
+		loop all players:
+			teleport loop-players to {lobby}
+		set {sp} to a random element out of {seed::*}
+		wait 3 seconds
+		execute console command "/mv delete starrun"
+		execute console command "/mvconfirm"
+		execute console command "/mv create starrun normal -s %{sp}%"
+		execute console command "/mvconfirm"
+		wait 3 seconds
+		execute console command "/mv import starrun normal"
+		execute console command "/mv delete starrun_nether"
+		execute console command "/mvconfirm"
+		wait 3 seconds
+		message "&aMap reset" to player
+		delete {loadingmap}
+		clear {sp}
+		make console execute "/mv gamerule keepInventory true starrun"
+		make console execute "/mv gamerule DoWeatherCycle false starrun"
+command /addseed [<text>]:
+    trigger:
+        if player is op:
+            if arg 1 is set:
+                add arg 1 to {seed::*}
+                send "&eVous avez ajouter la seed: &6%arg 1% &ea la liste des seeds reset."
+command /clearseed:
+    trigger:
+        if player is op:
+            clear {seed::*}

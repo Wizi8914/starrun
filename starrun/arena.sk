@@ -1,0 +1,471 @@
+command /§pvpphase1:
+    trigger:
+        if {str::1::start} is "buy":
+            send all players in world "pvp" title "&bVous avez 2 minutes" with subtitle "&fpour vous préparer !" for 6 seconds
+            play level up at players with pitch 1
+            wait 1 minute
+            broadcast "&eIl reste 1 minute pour vous préparer !" to "pvp"
+            play "CLICK" to all players at volume 0.2
+            wait 30 seconds
+            broadcast "&eIl reste 30 secondes pour vous préparer !" to "pvp"
+            play "CLICK" to all players at volume 0.2
+            wait 10 seconds
+            broadcast "&eIl reste 20 secondes pour vous préparer !" to "pvp"
+            play "CLICK" to all players at volume 0.2
+            wait 10 seconds
+            broadcast "&eIl reste 10 secondes pour vous préparer !" to "pvp"
+            play "CLICK" to all players at volume 0.2
+            wait 5 seconds
+            broadcast "&eIl reste 5 secondes pour vous préparer !" to "pvp"
+            play "CLICK" to all players at volume 0.2
+            wait 1 second
+            broadcast "&eIl reste 4 secondes pour vous préparer !" to "pvp"
+            play "CLICK" to all players at volume 0.2
+            wait 1 second
+            broadcast "&eIl reste 3 secondes pour vous préparer !" to "pvp"
+            play "CLICK" to all players at volume 0.2
+            wait 1 second
+            broadcast "&eIl reste 2 secondes pour vous préparer !" to "pvp"
+            play "CLICK" to all players at volume 0.2
+            wait 1 second
+            broadcast "&eIl reste 1 seconde pour vous préparer !" to "pvp"
+            play "CLICK" to all players at volume 0.2
+            wait 1 second
+            make console execute command "§teleportgames"
+            enable pvp in "pvp"
+            loop all players in world "pvp":
+                make loop-players run command "§freeze" as op
+            wait 5 seconds
+            set {str::1::start} to "pvp"
+            send all players in world "pvp" title "&bVous pouvez PVP !" with subtitle "&fQue le meilleur gagne !" for 6 seconds
+            play raw sound "mob.wither.spawn" at all players with pitch 1 volume 10
+
+on death of player:
+    if {str::1::start} is "pvp":
+        heal player by 255 hearts
+        set slot 8 of player to bed with name "&c&lLobby"
+        wait 3 ticks
+        make console execute "/gamemode spectator %player%"
+        add -1 to {str::1::nbpl}
+        remove player from {liste::game1::*}
+        teleport player to {death}
+        remove player's uuid from {listeuuid::game1::*}
+
+on death of a player:
+	if {str::1::start} is "pvp":
+		if attacker is a player:
+			set death message to "&b%player% &fa été tué par &b%attacker%"
+			add 100 to {coins.%attacker%}
+			if {str::1::nbpl} = 1:
+				set {fin} to true
+				wait 2 seconds
+				make console execute command "/topkill"
+				send all players title "&fLe joueur &b%{liste::game1::*}%" with subtitle "&fA gagné la partie !" for 6 seconds
+				loop {liste::game1::*}:
+					add 1 to {statwin.%loop-value%}
+				wait 10 seconds
+				loop all players in world "pvp":
+					make loop-players run command "/spawn" as op
+					make console execute command "/reset"
+					make console execute command "regenmap"
+					set {prestart.1} to false
+					set {str::1::nbpl} to 0
+					set {str::1::start} to "attente"
+					clear {str::1::points::*}
+					clear {str::1::kill::*}
+					clear {liste::game1::*}
+					set {str::1::secondes} to 59
+					set {str::1::minutes} to 14
+					clear {toggle.min}
+					clear {listeuuid::game1::*}
+					clear {str::s::%player%}
+					wait 7 seconds
+					set {fin} to false
+                    
+		if attacker is not player:
+			set death message to "&b%player% &fest mort"	
+			if {str::1::nbpl} = 1:
+				wait 2 seconds
+				set {fin} to true
+				make console execute command "/topkill"
+				send all players title "&fLe joueur &b%{liste::game1::*}%" with subtitle "&fA gagné la partie !" for 6 seconds
+				wait 10 seconds
+				loop all players in world "pvp":
+					make loop-players run command "/spawn" as op
+					make console execute command "/reset"
+					make console execute command "regenmap"
+					set {prestart.1} to false
+					set {str::1::nbpl} to 0
+					set {str::1::start} to "attente"
+					clear {str::1::points::*}
+					clear {str::1::kill::*}
+					clear {liste::game1::*}
+					set {str::1::secondes} to 59
+					set {str::1::minutes} to 14
+					clear {toggle.min}
+					clear {listeuuid::game1::*}
+					clear {str::s::%player%}
+					wait 7 seconds
+					set {fin} to false
+
+on respawn:
+    if {str::1::start} is "pvp":
+        set slot 8 of player to bed with name "&c&lLobby"
+        wait 3 ticks
+        make console execute "/gamemode spectator %player%"
+        add -1 to {str::1::nbpl}
+        remove player from {liste::game1::*}
+        teleport player to {death}
+
+command /§teleportgames:
+    trigger:
+        set {_r} to 1
+        loop {liste::game1::*}:
+            teleport loop-value to {pvp.%{_r}%}
+            add 1 to {_r}
+
+command /44:
+    trigger:
+        loop all players in world "pvp":
+            make loop-players run command "§freeze" as op
+
+command /§freeze:
+    trigger:
+        if player is op:
+            apply potion of slowness of tier 255 to player for 5 seconds
+            apply potion of jump boost of tier 140 to player for 5 seconds
+
+on shoot:
+    if {admin.%shooter%} is set:
+        stop
+    if {str::1::start} is "buy":
+        cancel event
+
+
+on place:
+    if {admin.%player%} is set:
+        stop
+    if {str::1::start} is "buy":
+        cancel event
+
+on break:
+    if {admin.%player%} is set:
+        stop
+    if {str::1::start} is "buy":
+        cancel event
+
+on death:
+    attacker is a player
+    if attacker is in world "pvp":
+        add 1 to {statkill.%attacker%}
+        add 1 to {str::1::kill::%attacker%}
+        if {str::1::kill::%attacker%} > {kill counter.%attacker%.kills_session_max}:
+            set {kill counter.%attacker%.kills_session_max} to 0
+            add {str::1::kill::%attacker%} to {kill counter.%attacker%.kills_session_max}
+
+#=====================================================================================================
+command /setdeath:
+    trigger:
+        if player is op:
+            set {death} to player's location
+            message "spawn de mort placé" to player
+
+command /setarena:
+    trigger:
+        if player is op:
+            set {lobbyarena} to player's location
+            message "&b&lGala&f&lstar &7Lobby arena au Coo %{lobbyarena}%" to player
+
+on inventory click:
+	if {str::1::start} is "buy":
+		name of clicked item is "&b&lShop PVP"
+		cancel event
+
+on drop:
+	if event-item is nether star named "&b&lShop PVP":
+		cancel event
+
+command /setspawnpvp [<number>]:
+    trigger:
+        if player is op:
+            if arg 1 is not set:
+                message "&cIl faut mettre une valeur !" to player
+                stop
+            
+            if arg 1 is set:
+                set {pvp.%arg%} to player's location
+                message "&b&lGala&f&lstar &7spawn pvp n°%arg% est placer au coo %{pvp.%arg%}%" to player
+               
+command /pvpspawninfo:
+    trigger:
+        if player is op:
+            send "&f&l    < Liste des SPAWN >    "
+            set {_pvpspawninfo} to 1
+            loop 16 times:
+                message "Spawn %{_pvpspawninfo}% : %{pvp.%{_pvpspawninfo}%}%"
+                add 1 to {_pvpspawninfo}
+
+ 
+#=====================================================SCOREBOARD====================================================
+
+
+on join:
+	if player is in world "pvp":
+		edit score id "onlinepvp" to "&8&l> &fJoueurs &7: &b%amount of players%&7/&b16" and 3
+     
+every 2 seconds:
+	loop all players in world "pvp":
+		wait a tick
+		edit score id "scorepvp.%loop-player%" to "&8&l> &fScore &7: &b%{str::1::points::%loop-player%}%" and 6
+		edit score id "killpvp.%loop-player%" to "&8&l> &fKill &7: &b%{str::1::kill::%loop-player%}%" and 5
+        
+every 7 seconds:
+	loop all players in world "pvp":
+		wait a tick
+		edit score id "iparena.%loop-player%" to "&7Play.GalaStar.fr" and 1
+		wait 3 ticks
+		edit score id "iparena.%loop-player%" to "&3P&7lay.GalaStar.fr" and 1
+		wait 3 ticks
+		edit score id "iparena.%loop-player%" to "&bP&3l&7ay.GalaStar.fr" and 1
+		wait 3 ticks
+		edit score id "iparena.%loop-player%" to "&3P&bl&3a&7y.GalaStar.fr" and 1
+		wait 3 ticks
+		edit score id "iparena.%loop-player%" to "&7P&3l&ba&3y&7.GalaStar.fr" and 1
+		wait 3 ticks
+		edit score id "iparena.%loop-player%" to "&7Pl&3a&by&3.&7GalaStar.fr" and 1
+		wait 3 ticks
+		edit score id "iparena.%loop-player%" to "&7Pla&3y&b.&3G&7alaStar.fr" and 1
+		wait 3 ticks
+		edit score id "iparena.%loop-player%" to "&7Play&3.&bG&3a&7laStar.fr" and 1
+		wait 3 ticks
+		edit score id "iparena.%loop-player%" to "&7Play.&3G&ba&3l&7aStar.fr" and 1
+		wait 3 ticks
+		edit score id "iparena.%loop-player%" to "&7Play.G&3a&bl&3a&7Star.fr" and 1
+		wait 3 ticks
+		edit score id "iparena.%loop-player%" to "&7Play.Ga&3l&ba&3S&7tar.fr" and 1
+		wait 3 ticks
+		edit score id "iparena.%loop-player%" to "&7Play.Gal&3a&bS&3t&7ar.fr" and 1
+		wait 3 ticks
+		edit score id "iparena.%loop-player%" to "&7Play.Gala&3S&bt&3a&7r.fr" and 1
+		wait 3 ticks
+		edit score id "iparena.%loop-player%" to "&7Play.GalaS&3t&ba&3r&7.fr" and 1
+		wait 3 ticks
+		edit score id "iparena.%loop-player%" to "&7Play.GalaSt&3a&br&3.&7fr" and 1
+		wait 3 ticks
+		edit score id "iparena.%loop-player%" to "&7Play.GalaSta&3r&b.&3f&7r" and 1
+		wait 3 ticks
+		edit score id "iparena.%loop-player%" to "&7Play.GalaStar&3.&bf&3r" and 1
+		wait 3 ticks
+		edit score id "iparena.%loop-player%" to "&7Play.GalaStar.&3f&br" and 1
+		wait 3 ticks
+		edit score id "iparena.%loop-player%" to "&7Play.GalaStar.f&3r" and 1
+		wait 1 ticks
+		edit score id "iparena.%loop-player%" to "&7Play.GalaStar.fr" and 1
+
+on join:
+    wait 10 ticks
+    if player is in world "pvp":
+        wait 3 ticks
+        wipe player's sidebar
+        wait 3 ticks
+        set name of sidebar of player to "&7&l< &b&lStar&f&lRun &7&l>"
+        set score "&8    " in sidebar of player to 9
+        set score "&8&l> &f%player%" in sidebar of player to 8
+        set score "&8     " in sidebar of player to 7
+        set id based score "&8&l> &fScore &7: &b%{str::1::points::%player%}%" in sidebar of player to 6 with id "scorepvp.%player%"
+        set id based score "&8&l> &fKill &7: &b%{str::1::kill::%player%}%" in sidebar of player to 5 with id "killpvp.%player%"
+        set score "    " in sidebar of player to 4
+        set id based score "&8&l> &fJoueurs &7: &b%amount of players%&7/&b16" in sidebar of player to 3 with id "onlinepvp"
+        set score "&9     " in sidebar of player to 2
+        set id based score "&7Play.GalaStar.fr" in sidebar of player to 1 with id "iparena.%player%"
+        stop
+
+on world change:
+    wait 10 ticks
+    if player is in world "pvp":
+        wait 3 ticks
+        wipe player's sidebar
+        wait 3 ticks
+        set name of sidebar of player to "&7&l< &b&lStar&f&lRun &7&l>"
+        set score "&8    " in sidebar of player to 9
+        set score "&8&l> &f%player%" in sidebar of player to 8
+        set score "&8     " in sidebar of player to 7
+        set id based score "&8&l> &fScore &7: &b%{str::1::points::%player%}%" in sidebar of player to 6 with id "scorepvp.%player%"
+        set id based score "&8&l> &fKill &7: &b%{str::1::kill::%player%}%" in sidebar of player to 5 with id "killpvp.%player%"
+        set score "    " in sidebar of player to 4
+        set id based score "&8&l> &fJoueurs &7: &b%amount of players%&7/&b16" in sidebar of player to 3 with id "onlinepvp"
+        set score "&9     " in sidebar of player to 2
+        set id based score "&7Play.GalaStar.fr" in sidebar of player to 1 with id "iparena.%player%"
+        stop
+
+
+#================================================SCOREBOARD=========================================================
+
+
+#==================================================RESET===========================================================
+
+on break:
+	if {Nomodif.%player%} is set:
+		stop
+	if {InReset} is set:
+		send "&cImpossible : Map en reset !"
+		cancel event
+		stop
+	if {blockis.%location of event-block%} is set:
+		stop
+	else:
+		set {blocklocation.%{count}%} to event-location
+		set {block.%{count}%} to type of event-block
+		set {blockis.%location of event-block%} to true
+		add 1 to {Count}
+ 
+on place:
+	if {Nomodif.%player%} is set:
+		stop
+	if {InReset} is set:
+		send "&cImpossible : Map en reset !"
+		cancel event
+		stop
+	if {blockis.%location of event-block%} is set:
+		stop
+	else:
+		set {blockis.%location of event-block%} to true
+		set {blocklocation.%{count}%} to event-location
+		set {block.%{count}%} to air
+		add 1 to {Count}
+on enderman pickup:
+	if {InReset} is set:
+		cancel event
+		stop
+	if {blockis.%location of event-block%} is set:
+		stop
+	else:
+		set {blocklocation.%{count}%} to event-location
+		set {block.%{count}%} to type of event-block
+		set {blockis.%location of event-block%} to true
+		add 1 to {Count}
+on enderman place:
+	if {InReset} is set:
+		cancel event
+		stop
+	if {blockis.%location of event-block%} is set:
+		stop
+	else:
+		set {blockis.%location of event-block%} to true
+		set {blocklocation.%{count}%} to event-location
+		set {block.%{count}%} to air
+		add 1 to {Count}
+on explode:
+	loop exploded blocks:
+		if {InReset} is set:
+			cancel event 
+			stop
+		if {blockis.%location of loop-block%} is set:
+			stop
+		else:
+			set {blocklocation.%{count}%} to loop-block's location
+			set {block.%{count}%} to type of loop-block
+			set {blockis.%location of loop-block%} to true
+			add 1 to {Count}
+
+on block form:
+	if {InReset} is set:
+		cancel event
+		stop
+	if {blockis.%location of event-block%} is set:
+		stop
+	else:
+		set {blocklocation.%{count}%} to event-location
+		set {block.%{count}%} to type of event-block
+		set {blockis.%location of event-block%} to true
+		add 1 to {Count}
+
+    
+
+command /reset:
+	permission: reset.reset
+	trigger:
+		if {InReset} is set:
+			send "&b&lGala&f&lstar &7Reset en cours !"
+			stop
+		set {InReset} to true
+		send "&b&lGala&f&lstar &7Il y a &b%{Count}% blocks &7à modifier !"
+		set {_count} to 0
+		loop {Count} times:
+			clear {blockis.%{blocklocation.%{_count}%}%} 
+			set block at {blocklocation.%{_count}%} to {block.%{_count}%}
+			clear {blocklocation.%{_count}%}
+			clear {block.%{_count}%}
+			send "Reset de map : %{_count}% / %{Count}%" to console
+			add 1 to {_count}
+			wait 0.5 tick
+		set {Count} to 0
+		clear {InReset}
+		send "&b&lGala&f&lstar &7Reset fini &b(%{_count}%)"
+ 
+command /nomodif:
+	permission: nomodif.reset
+	trigger:
+		if {Nomodif.%player%} is not set:
+			set {Nomodif.%player%} to true
+			send "&b&lGala&f&lstar &7Tu as activé le mode NoModif !"
+			stop
+		else:
+			clear {NoModif.%player%} 
+			send "&b&lGala&f&lstar &7Tu as désactivé le mode NoModif !"
+			stop
+on join:
+	if player has permission "nomodif.reset":
+		if {Nomodif.%player%} is set:
+			wait 5 ticks
+			send "&b&lGala&f&lstar &7Tu es en mode NoModif"
+			stop
+		else:
+			wait 5 ticks
+			send "&b&lGala&f&lstar &7Tu n'es pas en mode NoModif"
+			stop
+	else:
+		clear {NoModif.%player%}
+
+#==================================================RESET===========================================================
+
+on break 95:1:
+    if player is in world "pvp":
+        cancel event
+
+on break 95:0:
+    if player is in world "pvp":
+        cancel event
+
+on break 95:8:
+    if player is in world "pvp":
+        cancel event
+
+on break 35:1:
+    if player is in world "pvp":
+        cancel event
+
+on break beacon:
+    if player is in world "pvp":
+        cancel event
+
+on break cyan stained clay:
+    if player is in world "pvp":
+        cancel event
+
+on break 95:15:
+    if player is in world "pvp":
+        cancel event
+
+on break 35:7:
+    if player is in world "pvp":
+        cancel event
+
+on break 44:
+    if player is in world "pvp":
+        cancel event
+
+
+command /ppp:
+	trigger:
+		send "%{fin}%"
